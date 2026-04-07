@@ -1,0 +1,133 @@
+/* Blog Page Styles */
+.blog-hero {
+  background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+  color: white;
+  padding: 8rem 0;
+  text-align: center;
+}
+.blog-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin-bottom: 1rem;
+}
+.blog-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+.blogs-section {
+  padding: 6rem 0;
+  background: #f8f9fa;
+}
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+.blog-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+.blog-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.blog-content {
+  padding: 2rem;
+}
+.blog-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.blog-date, .blog-category {
+  color: var(--text-light);
+}
+.blog-category {
+  background: var(--light-green);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.blog-title-card {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.blog-excerpt {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.blog-link {
+  color: var(--primary-green);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.blog-link:hover {
+  color: var(--dark-green);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.page-link {
+  padding: 0.8rem 1.2rem;
+  border: 2px solid var(--light-green);
+  border-radius: 25px;
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.page-link.active,
+.page-link:hover {
+  background: var(--primary-green);
+  color: white;
+}
+
+.newsletter {
+  background: var(--dark-green);
+  color: white;
+  padding: 5rem 0;
+  text-align: center;
+}
+.newsletter-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.newsletter-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  width: 100%;
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+}
+.newsletter-form button {
+  white-space: nowrap;
+}
