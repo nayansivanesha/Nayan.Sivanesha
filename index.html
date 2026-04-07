@@ -35,7 +35,7 @@
                   url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
     }
 
-    /* Overlay for all sections */
+    /* Overlay for sections with backgrounds */
     section::before {
       content: '';
       position: absolute;
@@ -52,20 +52,20 @@
       z-index: 2;
     }
 
-    /* About Section - Community Hands */
-    #about::before {
-      background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(129, 199, 132, 0.7));
-    }
+    /* About Section - CLEAN GREEN GRADIENT (NO IMAGE) */
     #about {
-      background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+      background: linear-gradient(135deg, #4caf50 0%, #81c784 50%, #a5d6a7 100%);
+    }
+    #about::before {
+      background: rgba(0,0,0,0.2);
     }
 
-    /* Work Section - Rural Village */
-    #work::before {
-      background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(76, 175, 80, 0.75));
-    }
+    /* Work Section - SOFT RURAL GRADIENT (NO IMAGE) */
     #work {
-      background-image: url('https://images.unsplash.com/photo-1570549717069-33bed1b2d215?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+      background: linear-gradient(135deg, #2e7d32 0%, #4caf50 50%, #66bb6a 100%);
+    }
+    #work::before {
+      background: rgba(0,0,0,0.25);
     }
 
     /* Vision Section - Sunrise Inspiration */
@@ -95,7 +95,7 @@
     nav a { margin: 0 20px; font-weight: 600; color: #333; transition: 0.3s; }
     nav a:hover { color: #4caf50; }
 
-    /* Contact Section Enhanced */
+    /* Contact Section Enhanced - FIXED ICONS */
     .contact-details {
       background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
@@ -110,7 +110,7 @@
     .contact-details h3 {
       color: #4caf50;
       font-size: 1.8em;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       text-shadow: none;
     }
 
@@ -118,18 +118,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 20px 0;
+      margin: 25px 0;
       font-size: 1.2em;
       color: #333;
+      font-weight: 500;
+    }
+
+    .contact-item a {
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .contact-item a:hover {
+      color: #4caf50;
     }
 
     .contact-item i {
-      font-size: 1.5em;
-      margin-right: 15px;
-      color: #4caf50;
-      width: 30px;
+      font-size: 1.8em;
+      margin-right: 20px;
+      width: 40px;
+      color: #4caf50 !important;
     }
 
+    /* Social Icons - ONLY EMAIL, INSTAGRAM, X */
     .contact-icons { 
       margin-top: 30px; 
       display: flex; 
@@ -137,20 +148,21 @@
       justify-content: center;
     }
     .contact-icons a { 
-      color: #4caf50; 
-      font-size: 2.5em; 
+      color: #4caf50 !important; 
+      font-size: 2.2em; 
       transition: 0.3s; 
       background: rgba(255,255,255,0.9);
-      width: 70px;
-      height: 70px;
+      width: 75px;
+      height: 75px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-decoration: none !important;
     }
     .contact-icons a:hover { 
-      color: #fff; 
+      color: #fff !important; 
       transform: scale(1.1) translateY(-5px); 
       background: #4caf50;
       box-shadow: 0 15px 35px rgba(76,175,80,0.4);
@@ -168,9 +180,10 @@
       #hero h1, #about h2, #work h2, #vision h2, #contact h2 { font-size: 2.5em; }
       section p { font-size: 1.1em; }
       nav a { margin: 0 10px; font-size: 0.9em; }
-      .contact-icons a { font-size: 2em; width: 60px; height: 60px; }
+      .contact-icons a { font-size: 1.8em; width: 65px; height: 65px; }
       section { background-attachment: scroll; }
       .contact-details { padding: 30px 20px; margin: 20px 0; }
+      .contact-item { font-size: 1.1em; flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -193,7 +206,7 @@
     <a href="#about" class="btn fade-in" style="animation-delay:0.6s;">Learn More</a>
   </section>
 
-  <!-- About Section -->
+  <!-- About Section - CLEAN GRADIENT -->
   <section id="about">
     <h2 class="fade-in">About Me</h2>
     <p class="fade-in" style="animation-delay:0.3s;">
@@ -203,7 +216,7 @@
     </p>
   </section>
 
-  <!-- Work Section -->
+  <!-- Work Section - SOFT GRADIENT -->
   <section id="work">
     <h2 class="fade-in">My Work</h2>
     <p class="fade-in" style="animation-delay:0.3s;">
@@ -227,39 +240,44 @@
     </p>
   </section>
 
-  <!-- Contact Section - ENHANCED WITH DETAILS -->
+  <!-- Contact Section -->
   <section id="contact">
     <h2 class="fade-in">Contact Me</h2>
     <p class="fade-in" style="animation-delay:0.3s;">
       Feel free to reach out to me for collaboration, guidance, or to learn more about my work.
     </p>
 
-    <!-- NEW CONTACT DETAILS CARD -->
+    <!-- CONTACT DETAILS CARD -->
     <div class="contact-details fade-in" style="animation-delay:0.5s;">
       <h3>📧 Get In Touch</h3>
       
       <div class="contact-item">
         <i class="fas fa-envelope"></i>
-        <span>nayansivanesha@outlook.in</span>
+        <a href="mailto:nayansivanesha@outlook.in">nayansivanesha@outlook.in</a>
       </div>
       
       <div class="contact-item">
         <i class="fab fa-instagram"></i>
-        <span>@nayansivanesha</span>
+        <a href="https://www.instagram.com/nayansivanesha">@nayansivanesha</a>
       </div>
       
       <div class="contact-item">
         <i class="fab fa-x-twitter"></i>
-        <span>@nayansivanesha</span>
+        <a href="https://x.com/nayansivanesha">@nayansivanesha</a>
       </div>
     </div>
 
     <!-- Social Icons -->
     <div class="contact-icons fade-in" style="animation-delay:0.8s;">
-      <a href="mailto:nayansivanesha@outlook.in" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://www.instagram.com/nayansivanesha" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/nayansivanesha" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/yourusername" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:nayansivanesha@outlook.in" target="_blank" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.instagram.com/nayansivanesha" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://x.com/nayansivanesha" target="_blank" title="X (Twitter)">
+        <i class="fab fa-x-twitter"></i>
+      </a>
     </div>
   </section>
 
