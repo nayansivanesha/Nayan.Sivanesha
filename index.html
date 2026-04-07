@@ -15,66 +15,162 @@
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body { font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
-    section { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 50px 20px; transition: 0.3s; }
+    section { 
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      flex-direction: column; 
+      padding: 50px 20px; 
+      transition: 0.3s;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
 
-    /* Hero section - WITH BACKGROUND IMAGE */
+    /* Hero section */
     #hero { 
       background: linear-gradient(rgba(76, 175, 80, 0.7), rgba(129, 199, 132, 0.6)), 
                   url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
-      background-attachment: fixed;
-      position: relative;
-      color: white; 
-      text-align: center; 
     }
 
-    #hero::before {
+    /* Overlay for all sections */
+    section::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.3);
       z-index: 1;
     }
 
-    #hero > * {
+    /* Content z-index */
+    section > * {
       position: relative;
       z-index: 2;
     }
 
-    #hero h1 { font-size: 4em; margin-bottom: 20px; }
-    #hero p { font-size: 1.3em; margin-bottom: 30px; max-width: 600px; }
-    #hero .btn { padding: 12px 25px; border: 2px solid white; border-radius: 30px; color: white; font-weight: bold; transition: 0.3s; }
+    /* About Section - Community Hands */
+    #about::before {
+      background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(129, 199, 132, 0.7));
+    }
+    #about {
+      background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    }
+
+    /* Work Section - Rural Village */
+    #work::before {
+      background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(76, 175, 80, 0.75));
+    }
+    #work {
+      background-image: url('https://images.unsplash.com/photo-1570549717069-33bed1b2d215?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    }
+
+    /* Vision Section - Sunrise Inspiration */
+    #vision::before {
+      background: linear-gradient(rgba(255, 193, 7, 0.8), rgba(76, 175, 80, 0.7));
+    }
+    #vision {
+      background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80');
+    }
+
+    /* Contact Section - Nature Path */
+    #contact::before {
+      background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(129, 199, 132, 0.7));
+    }
+    #contact {
+      background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    }
+
+    #hero h1, #about h2, #work h2, #vision h2, #contact h2 { font-size: 4em; margin-bottom: 20px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    #hero p, section p { font-size: 1.3em; margin-bottom: 30px; max-width: 700px; text-align: center; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
+    #hero .btn { padding: 12px 25px; border: 2px solid white; border-radius: 30px; color: white; font-weight: bold; transition: 0.3s; background: rgba(255,255,255,0.1); }
     #hero .btn:hover { background: white; color: #4caf50; }
 
     /* Navigation */
-    nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); display: flex; justify-content: center; padding: 15px 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); display: flex; justify-content: center; padding: 15px 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     nav a { margin: 0 20px; font-weight: 600; color: #333; transition: 0.3s; }
     nav a:hover { color: #4caf50; }
 
-    /* Section styling */
-    section:nth-of-type(even) { background: #f5f5f5; }
-    section h2 { font-size: 2.5em; margin-bottom: 20px; color: #4caf50; }
-    section p { max-width: 700px; text-align: center; font-size: 1.1em; }
+    /* Contact Section Enhanced */
+    .contact-details {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      margin: 30px 0;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 500px;
+    }
 
-    /* Contact icons */
-    .contact-icons { margin-top: 20px; display: flex; gap: 25px; }
-    .contact-icons a { color: #4caf50; font-size: 2em; transition: 0.3s; }
-    .contact-icons a:hover { color: #388e3c; transform: scale(1.2); }
+    .contact-details h3 {
+      color: #4caf50;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      text-shadow: none;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .contact-item i {
+      font-size: 1.5em;
+      margin-right: 15px;
+      color: #4caf50;
+      width: 30px;
+    }
+
+    .contact-icons { 
+      margin-top: 30px; 
+      display: flex; 
+      gap: 25px; 
+      justify-content: center;
+    }
+    .contact-icons a { 
+      color: #4caf50; 
+      font-size: 2.5em; 
+      transition: 0.3s; 
+      background: rgba(255,255,255,0.9);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .contact-icons a:hover { 
+      color: #fff; 
+      transform: scale(1.1) translateY(-5px); 
+      background: #4caf50;
+      box-shadow: 0 15px 35px rgba(76,175,80,0.4);
+    }
 
     /* Footer */
     footer { text-align: center; padding: 20px; background: #333; color: white; }
 
     /* Animations */
-    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards; animation-play-state: paused; }
+    .fade-in { opacity: 0; transform: translateY(30px); animation: fadeIn 1.2s forwards; animation-play-state: paused; }
     @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
     /* Responsive */
     @media(max-width: 768px){
-      #hero h1 { font-size: 3em; }
+      #hero h1, #about h2, #work h2, #vision h2, #contact h2 { font-size: 2.5em; }
+      section p { font-size: 1.1em; }
       nav a { margin: 0 10px; font-size: 0.9em; }
-      .contact-icons a { font-size: 1.8em; }
+      .contact-icons a { font-size: 2em; width: 60px; height: 60px; }
+      section { background-attachment: scroll; }
+      .contact-details { padding: 30px 20px; margin: 20px 0; }
     }
   </style>
 </head>
@@ -131,18 +227,39 @@
     </p>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section - ENHANCED WITH DETAILS -->
   <section id="contact">
     <h2 class="fade-in">Contact Me</h2>
     <p class="fade-in" style="animation-delay:0.3s;">
       Feel free to reach out to me for collaboration, guidance, or to learn more about my work.
     </p>
 
-    <div class="contact-icons fade-in" style="animation-delay:0.5s;">
+    <!-- NEW CONTACT DETAILS CARD -->
+    <div class="contact-details fade-in" style="animation-delay:0.5s;">
+      <h3>📧 Get In Touch</h3>
+      
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>nayansivanesha@outlook.in</span>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fab fa-instagram"></i>
+        <span>@nayansivanesha</span>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fab fa-x-twitter"></i>
+        <span>@nayansivanesha</span>
+      </div>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="contact-icons fade-in" style="animation-delay:0.8s;">
       <a href="mailto:nayansivanesha@outlook.in" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
       <a href="https://www.instagram.com/nayansivanesha" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/nayansivanesha" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
       <a href="https://www.linkedin.com/in/yourusername" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://.com/nayansivanesha" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
     </div>
   </section>
 
