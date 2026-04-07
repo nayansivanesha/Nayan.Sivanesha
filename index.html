@@ -1,557 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nayan Talekar - Student & Social Entrepreneur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-green: #2E7D32;
-            --secondary-green: #81C784;
-            --light-green: #C8E6C9;
-            --earth-beige: #F5F5DC;
-            --warm-brown: #A1887F;
-            --dark-green: #1B5E20;
-            --white: #FFFFFF;
-            --shadow: 0 15px 35px rgba(46, 125, 50, 0.15);
-            --shadow-hover: 0 25px 50px rgba(46, 125, 50, 0.25);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nayan Talekar</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    section { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 50px 20px; transition: 0.3s; }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.7;
-            color: var(--dark-green);
-            overflow-x: hidden;
-        }
+    /* Hero section */
+    #hero { background: linear-gradient(135deg, #4caf50, #81c784); color: white; text-align: center; }
+    #hero h1 { font-size: 4em; margin-bottom: 20px; }
+    #hero p { font-size: 1.3em; margin-bottom: 30px; max-width: 600px; }
+    #hero .btn { padding: 12px 25px; border: 2px solid white; border-radius: 30px; color: white; font-weight: bold; transition: 0.3s; }
+    #hero .btn:hover { background: white; color: #4caf50; }
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-        }
+    /* Navigation */
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); display: flex; justify-content: center; padding: 15px 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    nav a { margin: 0 20px; font-weight: 600; color: #333; transition: 0.3s; }
+    nav a:hover { color: #4caf50; }
 
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-        }
+    /* Section styling */
+    section:nth-of-type(even) { background: #f5f5f5; }
+    section h2 { font-size: 2.5em; margin-bottom: 20px; color: #4caf50; }
+    section p { max-width: 700px; text-align: center; font-size: 1.1em; }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    /* Contact icons */
+    .contact-icons { margin-top: 20px; display: flex; gap: 25px; }
+    .contact-icons a { color: #4caf50; font-size: 2em; transition: 0.3s; }
+    .contact-icons a:hover { color: #388e3c; transform: scale(1.2); }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    /* Footer */
+    footer { text-align: center; padding: 20px; background: #333; color: white; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-green);
-            font-weight: 500;
-            position: relative;
-            transition: all 0.3s ease;
-        }
+    /* Animations */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards; animation-play-state: paused; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -8px;
-            left: 0;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-green);
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(46, 125, 50, 0.85), rgba(129, 199, 132, 0.7)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="%23C8E6C9"/><circle cx="300" cy="200" r="250" fill="%2381C784" opacity="0.3"/><circle cx="1300" cy="600" r="300" fill="%232E7D32" opacity="0.2"/><circle cx="800" cy="400" r="150" fill="%23F5F5DC" opacity="0.4"/></svg>');
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .hero-tagline {
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        .profile-img {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 6px solid rgba(255,255,255,0.4);
-            margin: 0 auto 2.5rem;
-            background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* About */
-        .about {
-            background: var(--earth-beige);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-green);
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-
-        .achievements {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .achievement {
-            display: flex;
-            align-items: center;
-            padding: 1.2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .achievement:hover {
-            transform: translateX(12px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-        }
-
-        .achievement-icon {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-right: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        /* Stats */
-        .stats {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 3rem;
-        }
-
-        .stat-item h3 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, white, var(--light-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .project-image {
-            height: 260px;
-            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .project-content {
-            padding: 2.5rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: var(--dark-green);
-        }
-
-        .project-content p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .skill-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.2rem;
-            color: white;
-        }
-
-        /* Contact */
-        .contact {
-            background: var(--earth-beige);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-        }
-
-        .contact-info h3 {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            color: var(--primary-green);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .contact-item i {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1.8rem;
-            font-size: 1.4rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.3rem;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: var(--shadow);
-        }
-
-        .contact-form {
-            background: white;
-            padding: 3.5rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1.3rem;
-            border: 2px solid #e8f5e8;
-            border-radius: 15px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: #f9fff9;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-green);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            padding: 1.3rem;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-green);
-            color: var(--light-green);
-            text-align: center;
-            padding: 3rem 5%;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
-            .about-content, .contact-content { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-            section { padding: 80px 5%; }
-            .nav-links { display: none; }
-        }
-    </style>
+    /* Responsive */
+    @media(max-width: 768px){
+      #hero h1 { font-size: 3em; }
+      nav a { margin: 0 10px; font-size: 0.9em; }
+      .contact-icons a { font-size: 1.8em; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Nayan Talekar</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-img">
-                <i class="fas fa-user-tie"></i>
-            </div>
-            <h1>Nayan Talekar</h1>
-            <div class="hero-subtitle">Student & Social Entrepreneur</div>
-            <div class="hero-tagline">"Learning, Growing, and Making a Difference"</div>
-        </div>
-    </section>
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#vision">Vision</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- About -->
-    <section id="about" class="about fade-in">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Student from Solapur with a Purpose</h3>
-                <p><strong>Nayan Talekar</strong> is a student from Solapur with a passion for social impact and community development. He balances academics, fitness, and hands-on initiatives to improve rural life and sustainability.</p>
-                <p>I grew up in Solapur, surrounded by the realities of rural life, which inspired my interest in community development and environmental sustainability. While I maintain my fitness through sports, my main focus is learning, growing, and creating meaningful change in my community. Through the NGO <strong>Model Action for Rural Change</strong>, I have been involved in water management, sustainable agriculture, and village development projects.</p>
-                
-                <div class="achievements">
-                    <div class="achievement">
-                        <div class="achievement-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <div><strong>Academic Excellence</strong><br>Strong performance in Class X</div>
-                    </div>
-                    <div class="achievement">
-                        <div class="achievement-icon"><i class="fas fa-dumbbell"></i></div>
-                        <div><strong>Fitness & Sports</strong><br>Active participation for health & well-being</div>
-                    </div>
-                    <div class="achievement">
-                        <div class="achievement-icon"><i class="fas fa-hand-holding-water"></i></div>
-                        <div><strong>50+ Projects</strong><br>Water & rural development through NGO</div>
-                    </div>
-                </div>
-            </div>
-            <div style="height: 500px; background: linear-gradient(135deg, var(--light-green), var(--earth-beige)); border-radius: 30px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow);">
-                <i class="fas fa-hands-helping" style="font-size: 14rem; color: rgba(46,125,50,0.8);"></i>
-            </div>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1 class="fade-in">Nayan Talekar</h1>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      Welcome! I’m a student, social worker, and aspiring leader passionate about making a positive impact in society. Explore more about my work and vision below.
+    </p>
+    <a href="#about" class="btn fade-in" style="animation-delay:0.6s;">Learn More</a>
+  </section>
 
-    <!-- Stats -->
-    <section class="stats fade-in">
-        <h2 class="section-title" style="color: white;">My Impact</h2>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3 data-target="50">0+</h3>
-                <p>Projects Completed</p>
-            </div>
-            <div class="stat-item">
-                <h3 data-target="10">0</h3>
-                <p>Crore Litres Water</p>
-            </div>
-            <
-           
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nayan Talekar - Student & Social Entrepreneur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="fade-in">About Me</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      I am Nayan Talekar, a Class XI student with a passion for social service and rural development. From a young age, I have been deeply involved in community initiatives, learning how focused action can bring meaningful change. Through my work with Model Action For Rural Change, I have participated in projects related to water management, education, and agricultural improvement.
+      <br><br>
+      Beyond social work, I am constantly seeking knowledge in areas like psychology, leadership, and sustainable development, aiming to blend innovative ideas with practical solutions. My goal is to create a positive impact that lasts beyond individual projects, shaping the lives of many in my community.
+    </p>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work">
+    <h2 class="fade-in">My Work</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      My work primarily revolves around creating practical solutions for real-life community challenges. I have actively contributed to initiatives like water conservation projects, rural infrastructure development, and educational awareness campaigns.
+      <br><br>
+      One of my proudest achievements is contributing to the successful implementation of the Atal Bhujal Yojana in Solapur district, which has helped improve groundwater management for farmers. I also engage in creating model villages, integrating technology and government schemes to make rural life more sustainable and efficient.
+      <br><br>
+      Every project I take on is guided by a simple principle: impact matters more than recognition. By combining strategy, hands-on effort, and community participation, I aim to inspire others to take part in social change.
+    </p>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision">
+    <h2 class="fade-in">My Vision</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      My vision is to build a society where every village and community has access to essential resources, education, and opportunities for growth. I believe in sustainable development that respects the environment while empowering people.
+      <br><br>
+      I aspire to create initiatives that bridge the gap between traditional practices and modern solutions, especially in areas like water management, education, and agriculture. My long-term goal is to combine social work with entrepreneurial ideas that can generate both societal and economic value.
+      <br><br>
+      Ultimately, I want to be a leader who inspires action, not just words. By demonstrating how thoughtful planning, persistence, and collaboration can transform communities, I hope to leave a lasting legacy that motivates others to contribute toward a better future.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="fade-in">Contact Me</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      Feel free to reach out to me for collaboration, guidance, or to learn more about my work.
+    </p>
+
+    <div class="contact-icons fade-in" style="animation-delay:0.5s;">
+      <a href="mailto:nayansivanesha@outlook.in" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.instagram.com/nayansivanesha" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/yourusername" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://.com/nayansivanesha" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Nayan Talekar | All rights reserved
+  </footer>
+
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.3 };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer){
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
         }
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
 
-        :root {
-            --primary
+</body>
+</html>
