@@ -15,14 +15,25 @@
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body { font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
-    section { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 50px 20px; transition: 0.3s; }
+    
+    section { 
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      flex-direction: column; 
+      padding: 50px 20px; 
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
 
-    /* Hero section - WITH BACKGROUND IMAGE */
+    /* HERO SECTION - BACKGROUND IMAGE */
     #hero { 
       background: linear-gradient(rgba(76, 175, 80, 0.7), rgba(129, 199, 132, 0.6)), 
-                  url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+                  /* 👈 ADD YOUR HERO IMAGE HERE */
+                  url('YOUR_HERO_IMAGE.jpg') center/cover no-repeat;
       background-attachment: fixed;
-      position: relative;
       color: white; 
       text-align: center; 
     }
@@ -34,11 +45,107 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
     #hero > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ABOUT SECTION - BACKGROUND IMAGE */
+    #about {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR ABOUT IMAGE HERE */
+                  url('about.jpeg') center/cover no-repeat;
+      color: white;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #about > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* WORK SECTION - BACKGROUND IMAGE */
+    #work {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR WORK IMAGE HERE */
+                  url('work.jpeg.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    #work::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #work > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* VISION SECTION - BACKGROUND IMAGE */
+    #vision {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR VISION IMAGE HERE */
+                  url('YOUR_VISION_IMAGE.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    #vision::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #vision > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CONTACT SECTION - BACKGROUND IMAGE */
+    #contact {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR CONTACT IMAGE HERE */
+                  url('contact.jpeg') center/cover no-repeat;
+      color: white;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #contact > * {
       position: relative;
       z-index: 2;
     }
@@ -64,9 +171,8 @@
     nav a:hover { color: #4caf50; }
 
     /* Section styling */
-    section:nth-of-type(even) { background: #f5f5f5; }
-    section h2 { font-size: 2.5em; margin-bottom: 20px; color: #4caf50; }
-    section p { max-width: 700px; text-align: center; font-size: 1.1em; }
+    section h2 { font-size: 2.5em; margin-bottom: 20px; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    section p { max-width: 700px; text-align: center; font-size: 1.1em; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
 
     /* Contact icons */
     .contact-icons { margin-top: 20px; display: flex; gap: 25px; }
@@ -114,7 +220,7 @@ Explore my vision and work below.
     <p class="fade-in" style="animation-delay:0.3s;">
     I am Nayan Talekar, a Class XI student with a keen interest in rural development, sustainable agriculture, and community-driven progress. During the COVID-19 lockdown, I spent extended time in my native village, where I gained first-hand exposure to village life and the practical realities of agriculture.
       <br><br>
-      This period significantly shaped my perspective and strengthened my interest in rural development initiatives. Observing the challenges faced by farmers, along with the work carried out through my father’s NGO, gave me a deeper understanding of the need for sustainable practices and structured community efforts.
+      This period significantly shaped my perspective and strengthened my interest in rural development initiatives. Observing the challenges faced by farmers, along with the work carried out through my father's NGO, gave me a deeper understanding of the need for sustainable practices and structured community efforts.
       <br><br>
       Beyond social work, I actively seek knowledge in areas such as life skills, psychology, leadership, and sustainable development. I believe in combining thoughtful learning with practical action and aim to blend innovative ideas with ground-level solutions.
       <br><br>
@@ -147,25 +253,28 @@ Explore my vision and work below.
       I aspire to see farmers who are knowledgeable, confident, and economically empowered through sustainable agricultural practices. In such villages, children should be able to access opportunities locally, without the need to migrate to cities for basic services or employment.
       <br><br>
       Through collaboration with NGOs and partnership with government initiatives, I aim to work on practical, long-term solutions that strengthen rural systems. My goal is to be recognized for meaningful contributions to the agriculture sector that positively impact farmers and rural communities.
-<!-- Contact Section -->
-<section id="contact">
-  <h2 class="fade-in">Contact Me</h2>
-  <p class="fade-in" style="animation-delay:0.3s;">
-   Feel free to reach out for a conversation, ideas, or to learn more about my work in rural development and agriculture. I am always happy to connect with curious minds and explore new opportunities together.
-  </p>
-
-  <div class="fade-in" style="animation-delay:0.5s; text-align:center; margin-top:20px;">
-    <!-- Email -->
-    <p><strong>Email:</strong> <a href="mailto:nayansivanesha@outlook.in">nayansivanesha@outlook.in</a></p>
-
-    <!-- Social Links -->
-    <p>
-      <strong>Connect with me:</strong>
-      <a href="https://www.instagram.com/nayansivanesha" target="_blank">Instagram</a> |
-      <a href="https://twitter.com/nayansivanesha" target="_blank">TwitterX</a>
     </p>
-  </div>
-</section>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="fade-in">Contact Me</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+   Feel free to reach out for a conversation, ideas, or to learn more about my work in rural development and agriculture. I am always happy to connect with curious minds and explore new opportunities together.
+    </p>
+
+    <div class="fade-in" style="animation-delay:0.5s; text-align:center; margin-top:20px;">
+      <!-- Email -->
+      <p><strong style="color: white;">Email:</strong> <a href="mailto:nayansivanesha@outlook.in" style="color: #4caf50;">nayansivanesha@outlook.in</a></p>
+
+      <!-- Social Links -->
+      <p>
+        <strong style="color: white;">Connect with me:</strong><br>
+        <a href="https://www.instagram.com/nayansivanesha" target="_blank" style="color: #4caf50;">Instagram</a> |
+        <a href="https://twitter.com/nayansivanesha" target="_blank" style="color: #4caf50;">TwitterX</a>
+      </p>
+    </div>
+  </section>
   
   <footer>
     &copy; 2026 Nayan Talekar | All rights reserved
