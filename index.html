@@ -102,12 +102,20 @@
       z-index: 2;
     }
 
-    /* VISION SECTION - BACKGROUND IMAGE */
-    #vision {
-      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
-                  /* 👈 ADD YOUR VISION IMAGE HERE */
-                  url('vision.jpeg') center/cover no-repeat;
+    /* VISION SECTION - VIDEO BACKGROUND */
+    #vision { 
       color: white;
+      position: relative;
+    }
+
+    #vision video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
 
     #vision::before {
@@ -117,7 +125,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
@@ -242,8 +250,14 @@ Explore my vision and work below.
     </p>
   </section>
 
-  <!-- Vision Section -->
+  <!-- Vision Section with Video Background -->
   <section id="vision">
+    <!-- 👈 ADD YOUR 15-SECOND VIDEO HERE (MP4 format recommended, max 10-15MB for fast loading) -->
+    <video autoplay muted loop playsinline>
+      <source src="vision-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    
     <h2 class="fade-in">My Vision</h2>
     <p class="fade-in" style="animation-delay:0.3s;">
       My vision is to contribute to the development of self-reliant and progressive villages where quality education, accessible healthcare, and essential infrastructure are available within the community. Rural areas should have practical facilities such as cold storage for agricultural produce, efficient resource management, and opportunities that reduce the gap between villages and cities.
@@ -294,6 +308,22 @@ Explore my vision and work below.
     }, appearOptions);
     
     faders.forEach(fader => appearOnScroll.observe(fader));
+
+    // Video optimization - pause/play on scroll
+    const visionVideo = document.querySelector('#vision video');
+    const visionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          visionVideo.play();
+        } else {
+          visionVideo.pause();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    if (visionVideo) {
+      visionObserver.observe(document.querySelector('#vision'));
+    }
   </script>
 
 </body>
