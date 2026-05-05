@@ -1,354 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nayan Talekar - Rural Development</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Arial', sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            scroll-behavior: smooth;
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 15px 0;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-        nav a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        nav a:hover {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        /* Hero */
-        #hero {
-            height: 100vh;
-            background: linear-gradient(rgba(76,175,80,0.8), rgba(129,199,132,0.6)), 
-                        url('hero.jpeg') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.4);
-        }
-        #hero > * { position: relative; z-index: 2; }
-        #hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); }
-        #hero p { font-size: 1.3rem; max-width: 600px; margin: 0 auto 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
-        .btn-custom {
-            background: white;
-            color: #4CAF50;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .btn-custom:hover {
-            background: #4CAF50;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(76,175,80,0.4);
-        }
-        
-        /* Sections */
-        section {
-            padding: 80px 20px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .bg-green { 
-            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%); 
-            color: white; 
-        }
-        .bg-light { background: #f8f9fa; }
-        
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        section p {
-            max-width: 700px;
-            font-size: 1.2rem;
-            margin: 0 auto 30px;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-            line-height: 1.8;
-        }
-        
-        /* Cards */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 50px auto;
-        }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-left: 5px solid #4CAF50;
-            transition: all 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(76,175,80,0.3);
-        }
-        .card-date {
-            color: #4CAF50;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-        
-        /* Contact Cards */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            max-width: 900px;
-            margin: 50px auto;
-        }
-        .contact-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        .contact-icon {
-            font-size: 3rem;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2C3E50;
-            color: white;
-            padding: 50px 20px 20px;
-            text-align: center;
-        }
-        .social-links {
-            margin: 30px 0;
-        }
-        .social-links a {
-            display: inline-flex;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: all 0.3s;
-        }
-        .social-links a:hover {
-            background: #4CAF50;
-            transform: translateY(-3px);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            #hero h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 10px; }
-            section { padding: 60px 20px; }
-            section h2 { font-size: 2rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nayan Talekar</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    
+    section { 
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      flex-direction: column; 
+      padding: 50px 20px; 
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* HERO SECTION - BACKGROUND IMAGE */
+    #hero { 
+      background: linear-gradient(rgba(76, 175, 80, 0.7), rgba(129, 199, 132, 0.6)), 
+                  /* 👈 ADD YOUR HERO IMAGE HERE */
+                  url('hero.jpeg') center/cover no-repeat;
+      background-attachment: fixed;
+      color: white; 
+      text-align: center; 
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #hero > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ABOUT SECTION - BACKGROUND IMAGE */
+    #about {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR ABOUT IMAGE HERE */
+                  url('about01.jpeg') center/cover no-repeat;
+      color: white;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #about > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* WORK SECTION - BACKGROUND IMAGE */
+    #work {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR WORK IMAGE HERE */
+                  url('work.jpeg') center/cover no-repeat;
+      color: white;
+    }
+
+    #work::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #work > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* VISION SECTION - BACKGROUND IMAGE */
+    #vision {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR VISION IMAGE HERE */
+                  url('vision.jpeg') center/cover no-repeat;
+      color: white;
+    }
+
+    #vision::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #vision > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CONTACT SECTION - BACKGROUND IMAGE */
+    #contact {
+      background: linear-gradient(rgba(76, 175, 80, 0.6), rgba(129, 199, 132, 0.5)), 
+                  /* 👈 ADD YOUR CONTACT IMAGE HERE */
+                  url('contact.jpeg') center/cover no-repeat;
+      color: white;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    #contact > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero h1 { font-size: 4em; margin-bottom: 20px; }
+    #hero p { font-size: 1.3em; margin-bottom: 30px; max-width: 600px; }
+    #hero .btn { padding: 12px 25px; border: 2px solid white; border-radius: 30px; color: white; font-weight: bold; transition: 0.3s; }
+    #hero .btn:hover { background: white; color: #4caf50; }
+
+    /* Navigation */
+    nav { 
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      background: rgba(255,255,255,0.95); 
+      display: flex; 
+      justify-content: center; 
+      padding: 15px 0; 
+      z-index: 100; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    }
+    nav a { margin: 0 20px; font-weight: 600; color: #333; transition: 0.3s; }
+    nav a:hover { color: #4caf50; }
+
+    /* Section styling */
+    section h2 { font-size: 2.5em; margin-bottom: 20px; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    section p { max-width: 700px; text-align: center; font-size: 1.1em; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
+
+    /* Contact icons */
+    .contact-icons { margin-top: 20px; display: flex; gap: 25px; }
+    .contact-icons a { color: #4caf50; font-size: 2em; transition: 0.3s; }
+    .contact-icons a:hover { color: #388e3c; transform: scale(1.2); }
+
+    /* Footer */
+    footer { text-align: center; padding: 20px; background: #333; color: white; }
+
+    /* Animations */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards; animation-play-state: paused; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media(max-width: 768px){
+      #hero h1 { font-size: 3em; }
+      nav a { margin: 0 10px; font-size: 0.9em; }
+      .contact-icons a { font-size: 1.8em; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#vision">Vision</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <!-- Hero -->
-    <section id="hero">
-        <div>
-            <h1>Nayan Talekar</h1>
-            <p>Student passionate about rural development, dedicated to improving farmers' lives through sustainable initiatives.</p>
-            <a href="#about" class="btn-custom">Learn More</a>
-        </div>
-    </section>
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#vision">Vision</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- About -->
-    <section id="about" class="bg-green">
-        <div>
-            <h2>About Me</h2>
-            <p>
-                Class XI student passionate about rural development. During COVID lockdown in my village, I gained firsthand exposure to agriculture challenges. Through father's MARCH NGO and Atal Bhujal Yojana, I learned sustainable practices and community efforts.
-            </p>
-            <p>
-                My goal: Create self-reliant villages with water security, local infrastructure, and empowered farmers.
-            </p>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1 class="fade-in">Nayan Talekar</h1>
+    <p class="fade-in" style="animation-delay:0.3s;">
+    I am a student passionate about rural development and dedicated to improving the lives of farmers through meaningful initiatives.
+Explore my vision and work below.
+    </p>
+    <a href="#about" class="btn fade-in" style="animation-delay:0.6s;">Learn More</a>
+  </section>
 
-    <!-- Work -->
-    <section id="work" class="bg-light">
-        <div>
-            <h2 style="color: #333;">My Work</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-date">2022-2024</div>
-                    <h3>Atal Bhujal Yojana</h3>
-                    <p>Assisted MARCH NGO in 113 villages, Solapur district. Community awareness, groundwater management, government scheme implementation.</p>
-                </div>
-                <div class="card">
-                    <div class="card-date">Ongoing</div>
-                    <h3>MARCH NGO Exposure</h3>
-                    <p>Field visits, village interactions, sustainable agriculture practices through family NGO initiatives.</p>
-                </div>
-                <div class="card">
-                    <div class="card-date">Class XI</div>
-                    <h3>Self Study</h3>
-                    <p>Life skills, psychology, leadership, sustainable development for rural solutions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="fade-in">About Me</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+    I am Nayan Talekar, a Class XI student with a keen interest in rural development, sustainable agriculture, and community-driven progress. During the COVID-19 lockdown, I spent extended time in my native village, where I gained first-hand exposure to village life and the practical realities of agriculture.
+      <br><br>
+      This period significantly shaped my perspective and strengthened my interest in rural development initiatives. Observing the challenges faced by farmers, along with the work carried out through my father's NGO, gave me a deeper understanding of the need for sustainable practices and structured community efforts.
+      <br><br>
+      Beyond social work, I actively seek knowledge in areas such as life skills, psychology, leadership, and sustainable development. I believe in combining thoughtful learning with practical action and aim to blend innovative ideas with ground-level solutions.
+      <br><br>
+      I am driven by the goal of creating a positive impact that extends beyond individual projects and contributes meaningfully to improving the lives of farmers and strengthening rural communities. I firmly believe that lasting development begins at the grassroots, and I aspire to contribute towards building model villages and sustainable rural systems for the future.
+    </p>
+  </section>
 
-    <!-- Vision -->
-    <section id="vision" class="bg-green">
-        <div>
-            <h2>My Vision</h2>
-            <div class="cards">
-                <div class="card" style="background: rgba(255,255,255,0.1); color: white; border-left-color: white;">
-                    <div class="card-date" style="color: white;">Priority #1</div>
-                    <h3 style="color: white;">Water Security</h3>
-                    <p>Foundation for agriculture and village sustainability in drought-prone areas.</p>
-                </div>
-                <div class="card" style="background: rgba(255,255,255,0.1); color: white; border-left-color: white;">
-                    <div class="card-date" style="color: white;">Core Goal</div>
-                    <h3 style="color: white;">Local Infrastructure</h3>
-                    <p>Education, healthcare, cold storage to reduce migration.</p>
-                </div>
-                <div class="card" style="background: rgba(255,255,255,0.1); color: white; border-left-color: white;">
-                    <div class="card-date" style="color: white;">End Vision</div>
-                    <h3 style="color: white;">Empowered Farmers</h3>
-                    <p>Knowledgeable farmers through sustainable practices.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Work Section -->
+  <section id="work">
+    <h2 class="fade-in">My Work</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      Atal Bhujal Yojana is a flagship initiative of the Ministry of Jal Shakti, Government of India, launched on the 93rd birth anniversary of Atal Bihari Vajpayee. The programme focuses on demonstrating community-led, sustainable groundwater management in water-stressed regions and aims to create scalable models for effective groundwater resource management across selected states, including Gujarat, Haryana, Karnataka, Madhya Pradesh, Maharashtra, Rajasthan, and Uttar Pradesh.
+      <br><br>
+      Under this initiative, Model Action For Rural Change (MARCH), an NGO led by my father, served as an implementing partner in Solapur district, covering approximately 113 villages across four tahsils.
+      <br><br>
+      As part of my exposure to this project through MARCH, I closely observed and assisted in field-level activities related to community awareness, village interactions, and understanding groundwater management practices. Being present during village visits, discussions, and awareness efforts allowed me to understand how government schemes are implemented at the grassroots level and how community participation plays a vital role in sustainable resource management.
+    <br><br>
+      This experience strengthened my interest in rural development and provided me with valuable insight into the practical challenges faced by rural communities regarding water conservation, agriculture, and long-term sustainability.
+    </p>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="bg-light">
-        <div>
-            <h2 style="color: #333;">Contact Me</h2>
-            <p style="color: #666; max-width: 600px; margin: 0 auto 40px;">
-                Reach out for conversations about rural development, agriculture, or collaboration opportunities.
-            </p>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h5>Email</h5>
-                    <a href="mailto:nayansivanesha@outlook.in" style="color: #4CAF50; font-weight: 600; font-size: 1.2rem;">nayansivanesha@outlook.in</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-blog"></i>
-                    </div>
-                    <h5>Blog</h5>
-                    <a href="https://nayansivanesha.blogspot.com" target="_blank" style="color: #4CAF50; font-weight: 600; font-size: 1.2rem;">nayansivanesha.blogspot.com</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h5>Social</h5>
-                    <div style="margin-top: 15px;">
-                        <a href="https://www.instagram.com/nayansivanesha" style="color: #4CAF50; font-size: 1.5rem; margin: 0 10px;" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://twitter.com/nayansivanesha" style="color: #4CAF50; font-size: 1.5rem; margin: 0 10px;" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Vision Section -->
+  <section id="vision">
+    <h2 class="fade-in">My Vision</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+      My vision is to contribute to the development of self-reliant and progressive villages where quality education, accessible healthcare, and essential infrastructure are available within the community. Rural areas should have practical facilities such as cold storage for agricultural produce, efficient resource management, and opportunities that reduce the gap between villages and cities.
+      <br><br>
+      Coming from a drought-prone region, I strongly believe that sustainable water management must be the first priority for rural development. Water security forms the foundation for stronger agriculture, better livelihoods, and overall village growth.
+      <br><br>
+      I aspire to see farmers who are knowledgeable, confident, and economically empowered through sustainable agricultural practices. In such villages, children should be able to access opportunities locally, without the need to migrate to cities for basic services or employment.
+      <br><br>
+      Through collaboration with NGOs and partnership with government initiatives, I aim to work on practical, long-term solutions that strengthen rural systems. My goal is to be recognized for meaningful contributions to the agriculture sector that positively impact farmers and rural communities.
+    </p>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
-                <div>
-                    <img src="about01.jpeg" alt="Nayan Talekar" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover;">
-                    <h5 style="margin-top: 15px; margin-bottom: 10px;">Nayan Talekar</h5>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">Student | Rural Development Leader</p>
-                </div>
-                <div>
-                    <h6 style="margin-bottom: 15px;">Contact</h6>
-                    <p style="font-size: 0.9rem; margin-bottom: 5px;"><i class="fas fa-envelope me-2"></i>nayansivanesha@outlook.in</p>
-                </div>
-                <div>
-                    <h6 style="margin-bottom: 15px;">Follow</h6>
-                    <div class="social-links">
-                        <a href="mailto:nayansivanesha@outlook.in" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://nayansivanesha.blogspot.com" target="_blank" title="Blog"><i class="fas fa-blog"></i></a>
-                        <a href="https://www.instagram.com/nayansivanesha" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/nayansivanesha" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr style="opacity: 0.3;">
-            <p style="font-size: 0.9rem; opacity: 0.8;">© 2026 Nayan Talekar | Empowering Rural India</p>
-        </div>
-    </footer>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="fade-in">Contact Me</h2>
+    <p class="fade-in" style="animation-delay:0.3s;">
+   Feel free to reach out for a conversation, ideas, or to learn more about my work in rural development and agriculture. I am always happy to connect with curious minds and explore new opportunities together.
+    </p>
+
+    <div class="fade-in" style="animation-delay:0.5s; text-align:center; margin-top:20px;">
+      <!-- Email -->
+      <p><strong style="color: white;">Email:</strong> <a href="mailto:nayansivanesha@outlook.in" style="color: #4caf50;">nayansivanesha@outlook.in</a></p>
+
+      <!-- Social Links -->
+      <p>
+        <strong style="color: white;">Connect with me:</strong><br>
+        <a href="https://nayansivanesha.blogspot.com" target="_blank" style="color: #4caf50;">Blog</a>   |
+        <a href="https://www.instagram.com/nayansivanesha" target="_blank" style="color: #4caf50;">Instagram</a> |
+        <a href="https://twitter.com/nayansivanesha" target="_blank" style="color: #4caf50;">X</a>
+      </p>
+    </div>
+  </section>
+  
+  <footer>
+    &copy; 2026 Nayan Talekar | All rights reserved
+  </footer>
+
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.3 };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer){
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+    
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+
 </body>
 </html>
