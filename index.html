@@ -6,27 +6,23 @@
     <title>Nayan Talekar Foundation - Empowering Rural Development</title>
     <meta name="description" content="Nayan Talekar Foundation supports rural development, sustainable agriculture, and farmer empowerment through innovative community-driven solutions.">
     
-    <!-- RS Foundation Exact CSS Stack -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap & Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Smart Slider 3 CSS (Exact RS Foundation Slider) -->
-    <link rel="stylesheet" type="text/css" href="https://rsfoundation.in/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/smartslider.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* RS Foundation Exact Styles */
         :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #81C784;
-            --rs-red: #B73A26;
+            --primary: #4CAF50;
+            --secondary: #81C784;
         }
         
         * { font-family: 'Roboto', sans-serif; box-sizing: border-box; }
+        body { line-height: 1.6; color: #333; }
         
-        /* Header - Exact RS Foundation */
+        /* Header */
         .main-header {
-            background: rgba(255,255,255,0.98) !important;
+            background: rgba(255,255,255,0.98);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: fixed;
@@ -35,134 +31,120 @@
             z-index: 999;
             transition: all 0.3s ease;
         }
+        .navbar-brand img { 
+            width: 65px; 
+            height: 65px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+        }
         
-        /* Hero Banner - Smart Slider Exact */
-        .home-banner { min-height: 100vh; position: relative; }
-        .n2-ss-slider { height: 100vh; }
+        /* Hero */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%),
+                        url('hero.jpeg') center/cover;
+            background-blend-mode: overlay;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: -1;
+        }
         
         /* Sections */
         .section-padding { padding: 100px 0; }
         .bg-light-custom { background: #f8f9fa; }
         
-        /* Cards - Exact RS Foundation */
-        .home-knowledge-box {
+        /* Cards */
+        .knowledge-card, .cpt-item {
             transition: all 0.4s ease;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary);
         }
-        .home-knowledge-box:hover {
+        .knowledge-card:hover, .cpt-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(76,175,80,0.3);
         }
         
-        /* News Grid - Exact */
-        .cpt-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        .cpt-item {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--primary-color);
-        }
-        .cpt-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        .cpt-date { color: var(--primary-color); font-weight: 600; margin-bottom: 10px; }
-        
-        /* Buttons - RS Foundation Style */
-        .btn-primary-custom {
-            background: var(--primary-color);
-            border: 2px solid var(--primary-color);
+        /* Buttons */
+        .btn-custom {
+            background: var(--primary);
+            border: 2px solid var(--primary);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
         }
-        .btn-primary-custom:hover {
+        .btn-custom:hover {
             background: transparent;
-            color: var(--primary-color);
+            color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(76,175,80,0.4);
         }
         
-        /* Chairman Section */
-        .chairman-section { background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); }
-        .chairman-quote {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #666;
-            line-height: 1.8;
-        }
+        /* Chairman */
+        .chairman-section { background: linear-gradient(135deg, #f8f9fa 0%, white 100%); }
+        .chairman-quote { font-style: italic; color: #666; line-height: 1.8; }
         
-        /* Footer - Exact */
-        footer {
-            background: #2C3E50;
-            color: white;
-            padding: 60px 0 30px;
+        /* News Grid */
+        .news-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
         }
+        .news-date { color: var(--primary); font-weight: 600; }
+        
+        /* Footer */
+        footer { background: #2C3E50; color: white; padding: 60px 0 30px; }
         .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            margin: 0 10px;
-            transition: all 0.3s ease;
+            width: 50px; height: 50px; 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 50%; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 10px; 
+            transition: all 0.3s;
         }
-        .social-icons a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-        }
+        .social-icons a:hover { background: var(--primary); transform: translateY(-3px); }
         
         /* Responsive */
-        @media (max-width: 768px) {
-            .section-padding { padding: 60px 0; }
-        }
-        
-        /* Smart Slider Custom */
-        div#n2-ss-2 .n2-ss-slider-1 { display: grid; position: relative; }
-        div#n2-ss-2 .n2-ss-slider-2 { 
-            display: grid; 
-            position: relative; 
-            overflow: hidden; 
-            padding: 0; 
-            border: 0; 
-            border-radius: 0; 
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%),
-                        url('hero.jpeg') center/cover no-repeat;
-            z-index: 1;
-        }
+        @media (max-width: 768px) { .section-padding { padding: 60px 0; } }
+        .hover-scale { transition: transform 0.3s; }
+        .hover-scale:hover { transform: scale(1.05); }
     </style>
 </head>
 
 <body>
-    <!-- HEADER - EXACT RS FOUNDATION -->
-    <div class="main-header">
+    <!-- HEADER -->
+    <header class="main-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="about01.jpeg" alt="Nayan Talekar Foundation" class="rounded-circle me-3" style="width: 65px; height: 65px; object-fit: cover;">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="about01.jpeg" alt="Nayan Talekar" class="me-3">
                     <span class="fw-bold fs-4 d-none d-lg-inline">Nayan Talekar</span>
                 </a>
-                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
@@ -173,55 +155,37 @@
                 </div>
             </div>
         </nav>
-    </div>
+    </header>
 
-    <!-- HERO BANNER - EXACT SMART SLIDER -->
-    <section class="home-banner">
-        <!-- RS Foundation Smart Slider Exact -->
-        <div class="n2-ss-slider n2-ow" id="n2-ss-2">
-            <div class="n2-ss-slider-1">
-                <div class="n2-ss-slider-2">
-                    <div class="n2-ss-slider-3">
-                        <div class="n2-ss-slide-backgrounds">
-                            <div class="n2-ss-slide-background" data-mode="fill">
-                                <div class="n2-ss-slide-background-image" style="background-image: url('hero.jpeg');"></div>
-                            </div>
-                        </div>
-                        <div class="n2-ss-slider-4">
-                            <div class="n2-ss-slide" data-first="1">
-                                <div class="n2-ss-layers-container">
-                                    <div class="n2-ss-layer">
-                                        <div style="max-width: 750px; margin: 0 auto; text-align: center; padding: 20px 0;">
-                                            <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 4rem; font-weight: 700; color: white; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                                                Empowering Rural Futures
-                                            </h1>
-                                            <p style="font-size: 1.3rem; color: white; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); line-height: 1.6;">
-                                                Nayan Talekar Foundation supports sustainable agriculture and rural development through innovative community-driven solutions.
-                                            </p>
-                                            <a href="#about" class="btn btn-primary-custom btn-lg" style="border: 3px solid white; font-size: 1.1rem;">
-                                                Learn My Journey
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center hero-content">
+                    <h1 class="display-3 fw-bold mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                        Empowering Rural Futures
+                    </h1>
+                    <p class="lead fs-4 mb-5" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">
+                        Student passionate about rural development, dedicated to improving farmers' lives through sustainable initiatives.
+                    </p>
+                    <a href="#about" class="btn btn-custom btn-lg" style="border: 3px solid white; font-size: 1.2rem;">
+                        <i class="fas fa-arrow-right me-2"></i>Learn My Journey
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STRATEGIC PARTNER SECTION - EXACT -->
-    <section class="section-padding bg-light-custom">
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding bg-light-custom">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold mb-4" style="color: var(--primary-color);">Student Leader in Rural Development</h2>
+                    <h2 class="display-5 fw-bold mb-4" style="color: var(--primary);">My Journey in Rural Development</h2>
                     <p class="lead fs-5 mb-4">
-                        Nayan Talekar Foundation is dedicated to sustainable agriculture, water management, and rural empowerment. Through hands-on experience with Atal Bhujal Yojana and family NGO initiatives, we bridge innovative ideas with practical rural solutions.
+                        Class XI student with hands-on experience in sustainable agriculture and water management. Through Atal Bhujal Yojana and family NGO initiatives, I've witnessed farmers' challenges and the power of community-driven solutions.
                     </p>
-                    <a href="#about" class="btn btn-primary-custom">Learn More</a>
+                    <a href="#work" class="btn btn-custom">View My Work</a>
                 </div>
                 <div class="col-lg-6 text-center">
                     <img src="about01.jpeg" alt="Nayan Talekar" class="img-fluid rounded-circle shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;">
@@ -230,256 +194,178 @@
         </div>
     </section>
 
-    <!-- CHAIRMAN SPEAK - EXACT LAYOUT -->
+    <!-- CHAIRMAN SECTION -->
     <section class="chairman-section section-padding">
         <div class="container">
-            <!-- Wave Separator -->
-            <svg viewBox="0 0 282.7 91.2" style="width: 100%; height: auto; fill: #f8f9fa;">
-                <!-- Wave SVG path from RS Foundation -->
-                <path d="M179,0.8c0,0-17,4.6-36.8,5.1c-19.8,0.5-38.9-5.8-38.9-5.8C141.3,17.1,179,0.8,179,0.8z"/>
-                <!-- Full wave path -->
-            </svg>
-            
             <div class="row align-items-center">
                 <div class="col-lg-4 text-center mb-5 mb-lg-0">
                     <img src="about01.jpeg" alt="Nayan Talekar" class="rounded-circle shadow-lg mb-4" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
                 <div class="col-lg-8">
-                    <h2 class="display-5 fw-bold mb-4 text-center text-lg-start">My Journey</h2>
+                    <h2 class="display-5 fw-bold mb-4 text-center text-lg-start" style="color: var(--primary);">My Perspective</h2>
                     <div class="text-center mb-4">
-                        <i class="fas fa-quote-left fa-3x" style="color: var(--primary-color);"></i>
+                        <i class="fas fa-quote-left fa-3x" style="color: var(--primary);"></i>
                     </div>
                     <blockquote class="chairman-quote fs-5">
-                        "I am Nayan Talekar, a Class XI student passionate about rural development and sustainable agriculture. During COVID-19 lockdown in my native village, I gained firsthand exposure to farmers' challenges and the need for structured community efforts..."
+                        "During COVID lockdown in my village, I saw farmers' real challenges. This shaped my vision for sustainable water management, local infrastructure, and empowered rural communities. Development must start at grassroots level."
                     </blockquote>
                     <div class="mt-4 text-end">
                         <strong>— Nayan Talekar, Founder</strong>
                     </div>
                 </div>
             </div>
-            
-            <!-- Bottom Wave -->
-            <svg viewBox="0 0 282.7 91.2" style="width: 100%; height: auto; fill: white; transform: scaleY(-1); margin-top: -1px;">
-                <!-- Wave SVG path -->
-            </svg>
         </div>
     </section>
 
-    <!-- INFORMATION SECTION - EXACT CPT GRID -->
-    <section class="section-padding bg-light-custom">
+    <!-- WORK SECTION -->
+    <section id="work" class="section-padding bg-light-custom">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-4">My Work Experience</h2>
-                <p class="lead mb-0 fs-5">Hands-on exposure to government schemes and rural development initiatives</p>
+                <h2 class="display-5 fw-bold mb-4">Atal Bhujal Yojana Experience</h2>
+                <p class="lead fs-5 mb-0">Groundwater management across 113 villages</p>
             </div>
-            
-            <div class="cpt-grid">
-                <article class="cpt-item">
-                    <a href="#work">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M2.25764 11.3855L10.7429 2.90023M10.7429 2.90023L3.46983 2.90023M10.7429 2.90023L10.7429 10.1733" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div class="cpt-date">2022-2024</div>
-                        <h3>Atal Bhujal Yojana</h3>
-                        <div class="cpt-category">Ministry of Jal Shakti</div>
-                    </a>
-                </article>
-                
-                <article class="cpt-item">
-                    <a href="#work">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M2.25764 11.3855L10.7429 2.90023M10.7429 2.90023L3.46983 2.90023M10.7429 2.90023L10.7429 10.1733" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div class="cpt-date">Ongoing</div>
-                        <h3>MARCH NGO Initiatives</h3>
-                        <div class="cpt-category">Solapur District</div>
-                    </a>
-                </article>
-                
-                <article class="cpt-item">
-                    <a href="#work">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M2.25764 11.3855L10.7429 2.90023M10.7429 2.90023L3.46983 2.90023M10.7429 2.90023L10.7429 10.1733" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div class="cpt-date">Class XI</div>
-                        <h3>Rural Development Studies</h3>
-                        <div class="cpt-category">Self-Initiated</div>
-                    </a>
-                </article>
-            </div>
-            
-            <div class="text-center mt-5">
-                <a href="#work" class="btn btn-primary-custom btn-lg">View Complete Work</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- WORK DETAIL SECTION -->
-    <section id="work" class="section-padding">
-        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <div class="home-knowledge-box p-5 shadow-lg">
-                        <h2 class="display-5 fw-bold mb-4 text-center">Atal Bhujal Yojana</h2>
-                        <p class="fs-5 lh-lg text-center">
-                            Flagship initiative covering 113 villages in Solapur district. Through MARCH NGO, I assisted in community awareness, village interactions, and groundwater management practices. This experience provided insight into government scheme implementation at grassroots level.
+                    <div class="knowledge-card p-5 text-center">
+                        <h3 class="display-6 fw-bold mb-4">Ministry of Jal Shakti Initiative</h3>
+                        <p class="fs-5 lh-lg mb-5">
+                            Assisted MARCH NGO in Solapur district with community awareness, village interactions, and groundwater practices. Gained insight into government scheme implementation and community participation in sustainable resource management.
                         </p>
-                        <div class="text-center mt-5">
-                            <a href="#contact" class="btn btn-primary-custom btn-lg">Discuss My Work</a>
-                        </div>
+                        <a href="#contact" class="btn btn-custom btn-lg">Discuss Opportunities</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- VISION SECTION - 3 COLUMN GRID */
-    <section id="vision" class="section-padding bg-light-custom">
+    <!-- VISION SECTION -->
+    <section id="vision" class="section-padding">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-4">My Vision</h2>
-                <p class="lead fs-5 mb-0">Building Self-Reliant Progressive Villages</p>
+                <h2 class="display-5 fw-bold mb-4">My Vision for Rural India</h2>
+                <p class="lead fs-5 mb-0">Self-reliant progressive villages</p>
             </div>
-            
-            <div class="cpt-grid">
-                <article class="cpt-item">
-                    <div class="cpt-date mb-3">Priority #1</div>
-                    <h4 class="fw-bold mb-3">Water Security First</h4>
-                    <p class="mb-4">Sustainable water management as foundation for agriculture, livelihoods, and village growth in drought-prone regions.</p>
-                </article>
-                
-                <article class="cpt-item">
-                    <div class="cpt-date mb-3">Core Focus</div>
+            <div class="news-grid">
+                <div class="cpt-item">
+                    <div class="news-date mb-3">Priority #1</div>
+                    <h4 class="fw-bold mb-3">Water Security</h4>
+                    <p>Sustainable water management foundation for agriculture and village growth in drought-prone regions.</p>
+                </div>
+                <div class="cpt-item">
+                    <div class="news-date mb-3">Core Pillars</div>
                     <h4 class="fw-bold mb-3">Local Infrastructure</h4>
-                    <p class="mb-4">Quality education, healthcare, cold storage within villages to reduce urban migration.</p>
-                </article>
-                
-                <article class="cpt-item">
-                    <div class="cpt-date mb-3">Long-term Goal</div>
+                    <p>Education, healthcare, cold storage within villages to reduce migration.</p>
+                </div>
+                <div class="cpt-item">
+                    <div class="news-date mb-3">End Goal</div>
                     <h4 class="fw-bold mb-3">Empowered Farmers</h4>
-                    <p>Knowledgeable farmers through sustainable practices and NGO-government partnerships.</p>
-                </article>
+                    <p>Knowledgeable farmers through sustainable practices and partnerships.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION - EXACT RS STYLE -->
+    <!-- CONTACT SECTION -->
     <section id="contact" class="section-padding bg-light-custom">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="display-5 fw-bold mb-4">Connect With Me</h2>
-                    <p class="lead fs-5 mb-5">
-                        Reach out for conversations, collaboration opportunities, or to discuss rural development initiatives.
-                    </p>
+                    <h2 class="display-5 fw-bold mb-4">Let's Connect</h2>
+                    <p class="lead fs-5 mb-5">Discuss rural development, agriculture, or collaboration opportunities.</p>
                     
                     <div class="row g-4 mb-5">
                         <div class="col-md-4">
-                            <div class="card border-0 shadow h-100 text-center p-4 hover-scale">
+                            <div class="card border-0 shadow hover-scale h-100 p-4 text-center">
                                 <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
-                                <h5>Email</h5>
+                                <h5 class="mb-2">Email</h5>
                                 <a href="mailto:nayansivanesha@outlook.in" class="fs-5 fw-bold text-primary">nayansivanesha@outlook.in</a>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card border-0 shadow h-100 text-center p-4 hover-scale">
+                            <div class="card border-0 shadow hover-scale h-100 p-4 text-center">
                                 <i class="fas fa-blog fa-3x text-primary mb-3"></i>
-                                <h5>Blog</h5>
+                                <h5 class="mb-2">Blog</h5>
                                 <a href="https://nayansivanesha.blogspot.com" target="_blank" class="fs-5 fw-bold text-primary">Visit Blog</a>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card border-0 shadow h-100 text-center p-4 hover-scale">
-                                <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                                <h5>Social</h5>
-                                <div class="mt-2">
-                                    <a href="https://www.instagram.com/nayansivanesha" class="me-3"><i class="fab fa-instagram fa-2x text-primary"></i></a>
-                                    <a href="https://twitter.com/nayansivanesha" target="_blank"><i class="fab fa-twitter fa-2x text-primary"></i></a>
+                            <div class="card border-0 shadow hover-scale h-100 p-4 text-center">
+                                <i class="fas fa-share-alt fa-3x text-primary mb-3"></i>
+                                <h5 class="mb-2">Social</h5>
+                                <div>
+                                    <a href="https://www.instagram.com/nayansivanesha" class="me-3 text-primary"><i class="fab fa-instagram fa-2x"></i></a>
+                                    <a href="https://twitter.com/nayansivanesha" class="text-primary"><i class="fab fa-twitter fa-2x"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <a href="mailto:nayansivanesha@outlook.in" class="btn btn-primary-custom btn-lg">Start Conversation</a>
+                    <a href="mailto:nayansivanesha@outlook.in" class="btn btn-custom btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i>Start Conversation
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER - EXACT RS FOUNDATION -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 mb-4">
                     <img src="about01.jpeg" alt="Nayan Talekar" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;">
                     <h5 class="fw-bold mb-3">Nayan Talekar</h5>
-                    <p class="text-light mb-0">Student Leader in Rural Development</p>
+                    <p class="text-light mb-0 small">Student Leader in Rural Development</p>
                 </div>
-                
                 <div class="col-lg-3 mb-4">
-                    <h6 class="fw-bold mb-3">Contact</h6>
-                    <p class="mb-1"><i class="fas fa-envelope me-2"></i><a href="mailto:nayansivanesha@outlook.in" class="text-light">nayansivanesha@outlook.in</a></p>
-                    <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Drought-prone Region, Maharashtra</p>
+                    <h6 class="fw-bold mb-3">Write Me</h6>
+                    <p class="mb-1 small"><i class="fas fa-envelope me-2"></i>nayansivanesha@outlook.in</p>
+                    <p class="mb-0 small"><i class="fas fa-map-marker-alt me-2"></i>Maharashtra</p>
                 </div>
-                
                 <div class="col-lg-3 mb-4">
                     <h6 class="fw-bold mb-3">Quick Links</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#about" class="text-light text-decoration-none">About</a></li>
-                        <li><a href="#work" class="text-light text-decoration-none">Work</a></li>
-                        <li><a href="#vision" class="text-light text-decoration-none">Vision</a></li>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#about" class="text-light text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="#work" class="text-light text-decoration-none">Work</a></li>
+                        <li class="mb-2"><a href="#vision" class="text-light text-decoration-none">Vision</a></li>
                         <li><a href="#contact" class="text-light text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
-                
                 <div class="col-lg-3 mb-4">
-                    <h6 class="fw-bold mb-3">Follow Me</h6>
+                    <h6 class="fw-bold mb-3">Connect</h6>
                     <div class="social-icons">
-                        <a href="mailto:nayansivanesha@outlook.in"><i class="fas fa-envelope"></i></a>
-                        <a href="https://nayansivanesha.blogspot.com" target="_blank"><i class="fas fa-blog"></i></a>
-                        <a href="https://www.instagram.com/nayansivanesha" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/nayansivanesha" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:nayansivanesha@outlook.in" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://nayansivanesha.blogspot.com" target="_blank" title="Blog"><i class="fas fa-blog"></i></a>
+                        <a href="https://www.instagram.com/nayansivanesha" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/nayansivanesha" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="my-4">
+            <hr class="my-4 opacity-25">
             <div class="text-center">
-                <p class="mb-0">&copy; 2026 Nayan Talekar Foundation | Empowering Rural India</p>
+                <p class="mb-0 small">&copy; 2026 Nayan Talekar Foundation | Empowering Rural India</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://rsfoundation.in/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/n2.min.js"></script>
-    <script src="https://rsfoundation.in/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/smartslider-frontend.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Navbar scroll effect
+        // Navbar scroll
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('.main-header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255,255,255,0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
-            } else {
-                header.style.background = 'rgba(255,255,255,0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
+            document.querySelector('.main-header').style.background = 
+                window.scrollY > 100 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)';
         });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelector(link.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        });
-
-        // Hover effects
-        document.querySelectorAll('.hover-scale').forEach(el => {
-            el.addEventListener('mouseenter', () => el.style.transform = 'scale(1.05)');
-            el.addEventListener('mouseleave', () => el.style.transform = 'scale(1)');
         });
     </script>
 </body>
