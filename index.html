@@ -31,6 +31,10 @@
             z-index: 999;
             transition: all 0.3s ease;
         }
+        .main-header.scrolled {
+            background: rgba(255,255,255,1);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
         .navbar-brand img { 
             width: 65px; 
             height: 65px; 
@@ -38,12 +42,17 @@
             border-radius: 50%; 
         }
         
-        /* Hero */
+        /* Hero - FIXED BACKGROUND */
         .hero-section {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%),
-                        url('hero.jpeg') center/cover;
-            background-blend-mode: overlay;
+            background: 
+                linear-gradient(135deg, rgba(76,175,80,0.85) 0%, rgba(129,199,132,0.75) 50%, rgba(76,175,80,0.9) 100%),
+                linear-gradient(45deg, #4CAF50 25%, transparent 25%), 
+                linear-gradient(-45deg, #4CAF50 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #4CAF50 75%),
+                linear-gradient(-45deg, #81C784 75%, transparent 75%);
+            background-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, cover;
+            background-position: 0 0, 0 10px, 10px 0px, 10px 10px, center;
             display: flex;
             align-items: center;
             position: relative;
@@ -53,16 +62,6 @@
             color: white;
             z-index: 2;
             position: relative;
-        }
-        .hero-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.4);
-            z-index: -1;
         }
         
         /* Sections */
@@ -123,13 +122,21 @@
             justify-content: center; 
             margin: 0 10px; 
             transition: all 0.3s;
+            color: white;
+            text-decoration: none;
         }
         .social-icons a:hover { background: var(--primary); transform: translateY(-3px); }
         
         /* Responsive */
-        @media (max-width: 768px) { .section-padding { padding: 60px 0; } }
+        @media (max-width: 768px) { 
+            .section-padding { padding: 60px 0; }
+            .hero-section h1 { font-size: 2.5rem !important; }
+        }
         .hover-scale { transition: transform 0.3s; }
         .hover-scale:hover { transform: scale(1.05); }
+        
+        /* Image Loading */
+        img { loading: lazy; }
     </style>
 </head>
 
@@ -139,7 +146,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#">
-                    <img src="about01.jpeg" alt="Nayan Talekar" class="me-3">
+                    <img src="https://via.placeholder.com/65x65/4CAF50/ffffff?text=NT" alt="Nayan Talekar" class="me-3" loading="lazy">
                     <span class="fw-bold fs-4 d-none d-lg-inline">Nayan Talekar</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -188,7 +195,7 @@
                     <a href="#work" class="btn btn-custom">View My Work</a>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="about01.jpeg" alt="Nayan Talekar" class="img-fluid rounded-circle shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;">
+                    <img src="https://via.placeholder.com/350x350/4CAF50/f8f9fa?text=Nayan+Talekar" alt="Nayan Talekar - Rural Development Leader" class="img-fluid rounded-circle shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;" loading="lazy">
                 </div>
             </div>
         </div>
@@ -199,7 +206,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 text-center mb-5 mb-lg-0">
-                    <img src="about01.jpeg" alt="Nayan Talekar" class="rounded-circle shadow-lg mb-4" style="width: 250px; height: 250px; object-fit: cover;">
+                    <img src="https://via.placeholder.com/250x250/4CAF50/f8f9fa?text=NT" alt="Nayan Talekar Portrait" class="rounded-circle shadow-lg mb-4" style="width: 250px; height: 250px; object-fit: cover;" loading="lazy">
                 </div>
                 <div class="col-lg-8">
                     <h2 class="display-5 fw-bold mb-4 text-center text-lg-start" style="color: var(--primary);">My Perspective</h2>
@@ -246,17 +253,17 @@
                 <p class="lead fs-5 mb-0">Self-reliant progressive villages</p>
             </div>
             <div class="news-grid">
-                <div class="cpt-item">
+                <div class="cpt-item p-4 bg-white">
                     <div class="news-date mb-3">Priority #1</div>
                     <h4 class="fw-bold mb-3">Water Security</h4>
                     <p>Sustainable water management foundation for agriculture and village growth in drought-prone regions.</p>
                 </div>
-                <div class="cpt-item">
+                <div class="cpt-item p-4 bg-white">
                     <div class="news-date mb-3">Core Pillars</div>
                     <h4 class="fw-bold mb-3">Local Infrastructure</h4>
                     <p>Education, healthcare, cold storage within villages to reduce migration.</p>
                 </div>
-                <div class="cpt-item">
+                <div class="cpt-item p-4 bg-white">
                     <div class="news-date mb-3">End Goal</div>
                     <h4 class="fw-bold mb-3">Empowered Farmers</h4>
                     <p>Knowledgeable farmers through sustainable practices and partnerships.</p>
@@ -293,8 +300,8 @@
                                 <i class="fas fa-share-alt fa-3x text-primary mb-3"></i>
                                 <h5 class="mb-2">Social</h5>
                                 <div>
-                                    <a href="https://www.instagram.com/nayansivanesha" class="me-3 text-primary"><i class="fab fa-instagram fa-2x"></i></a>
-                                    <a href="https://twitter.com/nayansivanesha" class="text-primary"><i class="fab fa-twitter fa-2x"></i></a>
+                                    <a href="https://www.instagram.com/nayansivanesha" class="me-3 text-primary" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                                    <a href="https://twitter.com/nayansivanesha" class="text-primary" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -313,7 +320,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 mb-4">
-                    <img src="about01.jpeg" alt="Nayan Talekar" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                    <img src="https://via.placeholder.com/80x80/4CAF50/f8f9fa?text=NT" alt="Nayan Talekar Foundation" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;" loading="lazy">
                     <h5 class="fw-bold mb-3">Nayan Talekar</h5>
                     <p class="text-light mb-0 small">Student Leader in Rural Development</p>
                 </div>
@@ -343,7 +350,7 @@
             </div>
             <hr class="my-4 opacity-25">
             <div class="text-center">
-                <p class="mb-0 small">&copy; 2026 Nayan Talekar Foundation | Empowering Rural India</p>
+                <p class="mb-0 small">&copy; 2024 Nayan Talekar Foundation | Empowering Rural India</p>
             </div>
         </div>
     </footer>
@@ -352,20 +359,45 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Navbar scroll
+        // Navbar scroll effect - FIXED
         window.addEventListener('scroll', () => {
-            document.querySelector('.main-header').style.background = 
-                window.scrollY > 100 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)';
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
         
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
-                document.querySelector(link.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.knowledge-card, .cpt-item, .card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
