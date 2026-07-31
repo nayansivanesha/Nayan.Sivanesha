@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | S.Nayan Talekar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --dark: #0f172a;
+            --white: #ffffff;
+            --gray-100: #f3f4f6;
+            --gray-800: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--gray-800); overflow-x: hidden; padding-top: 80px; }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            z-index: 1000;
+        }
+
+        .nav-link { font-weight: 500; color: var(--gray-800) !important; margin: 0 8px; padding: 8px 16px !important; border-radius: 8px; transition: all 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary) !important; background: var(--gray-100); }
+
+        .content-section { padding: 6rem 0; }
+        .section-title { font-size: 2.5rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem; text-align: center; }
+        .section-subtitle { font-size: 1.25rem; color: var(--gray-800); text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+
+        .gallery-filter-btn {
+            background: var(--white);
+            color: var(--gray-800);
+            border: 1px solid #cbd5e1;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 0 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-filter-btn:hover, .gallery-filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25);
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            background: var(--gray-100);
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.2) 60%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        .gallery-overlay .icon-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .gallery-card-wrapper { transition: all 0.4s ease; }
+        .gallery-card-wrapper.hide { display: none !important; }
+
+        #galleryModal .modal-content { background: transparent; border: none; }
+        #galleryModal .btn-close { filter: invert(1); opacity: 0.9; }
+
+        .footer { background: #0f172a; }
+        .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; display: inline-block; margin-bottom: 6px; }
+        .footer-link:hover { color: #3b82f6; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="ms-2 fw-bold fs-4">S. Nayan Talekar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="work.html">Work</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="vision.html">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="gallery" class="content-section">
+        <div class="container">
+            <h2 class="section-title text-center animate">Field Gallery</h2>
+            <p class="section-subtitle animate">A visual glimpse into our ground initiatives, village meetings, and water conservation projects.</p>
+            
+            <div class="text-center mb-5 animate">
+                <button class="gallery-filter-btn active" data-filter="all">All Photos</button>
+                <button class="gallery-filter-btn" data-filter="fieldwork">Field Work</button>
+                <button class="gallery-filter-btn" data-filter="projects">Water Projects</button>
+                <button class="gallery-filter-btn" data-filter="community">Community</button>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="fieldwork">
+                    <div class="gallery-item animate" onclick="openLightbox('assets/gallery1.jpg', 'Atal Bhujal Yojana Village Survey Solapur')">
+                        <img src="assets/gallery1.jpg" alt="Field Work" onerror="this.src='https://picsum.photos/600/450?random=1'">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <h5 class="fw-bold mb-1">Village Groundwater Survey</h5>
+                            <small class="opacity-75">Solapur District</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="community">
+                    <div class="gallery-item animate" style="animation-delay: 0.1s;" onclick="openLightbox('assets/gallery2.jpg', 'Farmer Training Workshop')">
+                        <img src="assets/gallery2.jpg" alt="Community Interaction" onerror="this.src='https://picsum.photos/600/450?random=2'">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <h5 class="fw-bold mb-1">Farmer Awareness Session</h5>
+                            <small class="opacity-75">Sustainable Agriculture</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
+                    <div class="gallery-item animate" style="animation-delay: 0.2s;" onclick="openLightbox('assets/gallery3.jpg', 'Check Dam Water Project')">
+                        <img src="assets/gallery3.jpg" alt="Water Project" onerror="this.src='https://picsum.photos/600/450?random=3'">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <h5 class="fw-bold mb-1">Water Recharge Structure</h5>
+                            <small class="opacity-75">Rainwater Harvesting</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="fieldwork">
+                    <div class="gallery-item animate" style="animation-delay: 0.3s;" onclick="openLightbox('assets/gallery4.jpg', 'On-ground Inspection')">
+                        <img src="assets/gallery4.jpg" alt="Field Work Inspection" onerror="this.src='https://picsum.photos/600/450?random=4'">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <h5 class="fw-bold mb-1">Well Depth Mapping</h5>
+                            <small class="opacity-75">Groundwater Monitoring</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
+                    <div class="gallery-item animate" style="animation-delay: 0.4s;" onclick="openLightbox('assets/gallery5.jpg', 'Ministry of Jal Shakti Partnership')">
+                        <img src="assets/gallery5.jpg" alt="Jal Shakti Project" onerror="this.src='https://picsum.photos/600/450?random=5'">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <h5 class="fw-bold mb-1">Ministry Collaboration</h5>
+                            <small class="opacity-75">MARCH NGO Partnership</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="community">
+                    <div class="gallery-item animate" style="animation-delay: 0.5s;" onclick="openLightbox('assets/gallery6.jpg', 'Gram Sabha Youth Engagement')">
+                        <img src="assets/gallery6.jpg" alt="Gram Sabha Meeting" onerror="this.src='https://picsum.photos/600/450?random=6'">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <h5 class="fw-bold mb-1">Youth & Gram Sabha Session</h5>
+                            <small class="opacity-75">Rural Empowerment</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-3">
+                    <img id="lightboxImage" src="" alt="Gallery Preview" class="img-fluid rounded-3 shadow-lg mb-3" style="max-height: 80vh; width: auto;">
+                    <p id="lightboxCaption" class="text-white fw-bold fs-5 mb-0"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-5 text-white">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="fw-bold mb-3 text-white">S. Nayan Talekar</h5>
+                    <p class="text-light opacity-75 mb-0">Empowering rural communities through sustainable development, water management, and community empowerment.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="abuot.html" class="footer-link">About</a></li>
+                        <li><a href="work.html" class="footer-link">Work</a></li>
+                        <li><a href="#gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="vision.html" class="footer-link">Vision</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Focus Areas & Knowledge</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://en.wikipedia.org/wiki/Sustainable_agriculture" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Sustainable Agriculture <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                        <li>
+                             <a href="https://water.maharashtra.gov.in/en/scheme/atal-bhujal-yojana/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Atal Bhujal Yojana <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://jaljeevanmission.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Jal Jeevan Mission <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Contact Info</h6>
+                    <p class="mb-2 text-light opacity-75">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:nayansivanesha@outlook.in" class="footer-link">nayansivanesha@outlook.in</a>
+                    </p>
+                    <p class="text-light opacity-75">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <a href="https://maps.google.com/?q=Maharashtra,+India" target="_blank" rel="noopener noreferrer" class="footer-link">
+                            Maharashtra, India <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 border-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0 text-light opacity-75">© 2026 Nayan Talekar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animate');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+        // Gallery Filter
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-card-wrapper');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
+
+        // Lightbox Function
+        function openLightbox(imageSrc, caption) {
+            const lightboxImg = document.getElementById('lightboxImage');
+            const lightboxCap = document.getElementById('lightboxCaption');
+            lightboxImg.src = imageSrc;
+            lightboxCap.textContent = caption;
+            const galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            galleryModal.show();
+        }
+    </script>
+</body>
+</html>

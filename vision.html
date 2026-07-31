@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision | S.Nayan Talekar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray-50: #f1f5f9;
+            --gray-800: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--gray-800); overflow-x: hidden; padding-top: 80px; }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            z-index: 1000;
+        }
+
+        .nav-link { font-weight: 500; color: var(--gray-800) !important; margin: 0 8px; padding: 8px 16px !important; border-radius: 8px; transition: all 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary) !important; background: var(--gray-50); }
+
+        .quote-section {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--light) 100%);
+            padding: 8rem 0;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--gray-800);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .quote-author { font-weight: 600; color: var(--primary); text-align: center; font-size: 1.1rem; }
+
+        .footer { background: #0f172a; }
+        .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; display: inline-block; margin-bottom: 6px; }
+        .footer-link:hover { color: #3b82f6; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="ms-2 fw-bold fs-4">S. Nayan Talekar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="work.html">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="vision.html">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="vision" class="quote-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <div class="animate">
+                        <i class="fas fa-quote-left fa-3x mb-4" style="color: var(--primary);"></i>
+                        <blockquote class="quote-text">
+                            "I envision a future where rural India stands equal with cities — where water security, education, and opportunity turn every village into a place of dignity, growth, and self-reliance. Real progress is not when cities grow, but when villages stop being left behind."
+                        </blockquote>
+                        <div class="quote-author mt-4">
+                            — S. Nayan Talekar
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer class="footer py-5 text-white">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="fw-bold mb-3 text-white">S. Nayan Talekar</h5>
+                    <p class="text-light opacity-75 mb-0">Empowering rural communities through sustainable development, water management, and community empowerment.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="abuot.html" class="footer-link">About</a></li>
+                        <li><a href="work.html" class="footer-link">Work</a></li>
+                        <li><a href="#gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="vision.html" class="footer-link">Vision</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Focus Areas & Knowledge</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://en.wikipedia.org/wiki/Sustainable_agriculture" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Sustainable Agriculture <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                        <li>
+                             <a href="https://water.maharashtra.gov.in/en/scheme/atal-bhujal-yojana/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Atal Bhujal Yojana <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://jaljeevanmission.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Jal Jeevan Mission <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Contact Info</h6>
+                    <p class="mb-2 text-light opacity-75">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:nayansivanesha@outlook.in" class="footer-link">nayansivanesha@outlook.in</a>
+                    </p>
+                    <p class="text-light opacity-75">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <a href="https://maps.google.com/?q=Maharashtra,+India" target="_blank" rel="noopener noreferrer" class="footer-link">
+                            Maharashtra, India <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 border-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0 text-light opacity-75">© 2026 Nayan Talekar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animate');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
