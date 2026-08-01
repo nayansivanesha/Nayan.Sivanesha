@@ -99,6 +99,14 @@
             color: white;
         }
 
+        .gallery-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+
         .gallery-card-wrapper { transition: all 0.4s ease; }
         .gallery-card-wrapper.hide { display: none !important; }
 
@@ -147,69 +155,75 @@
                 <button class="gallery-filter-btn" data-filter="community">Community</button>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="fieldwork">
-                    <div class="gallery-item animate" onclick="openLightbox('assets/gallery1.jpg', 'Atal Bhujal Yojana Village Survey Solapur')">
-                        <img src="assets/gallery1.jpg" alt="Field Work" onerror="this.src='https://picsum.photos/600/450?random=1'">
+            <div class="row g-4" id="galleryGrid">
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
+                    <div class="gallery-item animate" onclick="openLightbox('gallery1.jpeg', 'Percolation Pond', 'At the stage of Grouting COT of a Percolation Pond in Solapur District.')">
+                        <img src="gallery1.jpeg" alt="Percolating Pond" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/800/600?water1';">
                         <div class="gallery-overlay">
                             <div class="icon-box"><i class="fas fa-expand"></i></div>
-                            <h5 class="fw-bold mb-1">Village Groundwater Survey</h5>
-                            <small class="opacity-75">Solapur District</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="community">
-                    <div class="gallery-item animate" style="animation-delay: 0.1s;" onclick="openLightbox('assets/gallery2.jpg', 'Farmer Training Workshop')">
-                        <img src="assets/gallery2.jpg" alt="Community Interaction" onerror="this.src='https://picsum.photos/600/450?random=2'">
-                        <div class="gallery-overlay">
-                            <div class="icon-box"><i class="fas fa-expand"></i></div>
-                            <h5 class="fw-bold mb-1">Farmer Awareness Session</h5>
-                            <small class="opacity-75">Sustainable Agriculture</small>
+                            <span class="gallery-tag">Water Projects</span>
+                            <h5 class="fw-bold mb-1">Percolation Pond</h5>
+                            <p class="small text-light opacity-75 mb-0">At the stage of Grouting COT of a Percolation Pond in Solapur District.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
-                    <div class="gallery-item animate" style="animation-delay: 0.2s;" onclick="openLightbox('assets/gallery3.jpg', 'Check Dam Water Project')">
-                        <img src="assets/gallery3.jpg" alt="Water Project" onerror="this.src='https://picsum.photos/600/450?random=3'">
+                    <div class="gallery-item animate" style="animation-delay: 0.1s;" onclick="openLightbox('gallery2.jpeg', 'Cement Nala Bund', 'At the Stage of Excavation of Foundation of Cement Nala Bund in Solapur District.')">
+                        <img src="gallery2.jpeg" alt="Field Team Briefing" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/800/600?water2';">
                         <div class="gallery-overlay">
                             <div class="icon-box"><i class="fas fa-expand"></i></div>
-                            <h5 class="fw-bold mb-1">Water Recharge Structure</h5>
-                            <small class="opacity-75">Rainwater Harvesting</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="fieldwork">
-                    <div class="gallery-item animate" style="animation-delay: 0.3s;" onclick="openLightbox('assets/gallery4.jpg', 'On-ground Inspection')">
-                        <img src="assets/gallery4.jpg" alt="Field Work Inspection" onerror="this.src='https://picsum.photos/600/450?random=4'">
-                        <div class="gallery-overlay">
-                            <div class="icon-box"><i class="fas fa-expand"></i></div>
-                            <h5 class="fw-bold mb-1">Well Depth Mapping</h5>
-                            <small class="opacity-75">Groundwater Monitoring</small>
+                            <span class="gallery-tag">Water Projects</span>
+                            <h5 class="fw-bold mb-1">Cement Nala Bund</h5>
+                            <p class="small text-light opacity-75 mb-0">At the Stage of Excavation of Foundation of Cement Nala Bund in Solapur District.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
-                    <div class="gallery-item animate" style="animation-delay: 0.4s;" onclick="openLightbox('assets/gallery5.jpg', 'Ministry of Jal Shakti Partnership')">
-                        <img src="assets/gallery5.jpg" alt="Jal Shakti Project" onerror="this.src='https://picsum.photos/600/450?random=5'">
+                    <div class="gallery-item animate" style="animation-delay: 0.2s;" onclick="openLightbox('gallery3.jpeg', 'Earthen Channel', 'At the stage of Excavation of Earthen Channel in Latur District.')">
+                        <img src="gallery3.jpeg" alt="Lake Survey Operation" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/800/600?water3';">
                         <div class="gallery-overlay">
                             <div class="icon-box"><i class="fas fa-expand"></i></div>
-                            <h5 class="fw-bold mb-1">Ministry Collaboration</h5>
-                            <small class="opacity-75">MARCH NGO Partnership</small>
+                            <span class="gallery-tag">Water Projects</span>
+                            <h5 class="fw-bold mb-1">Earthen Channel</h5>
+                            <p class="small text-light opacity-75 mb-0">At the stage of Excavation of Earthen Channel in Latur District.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="community">
-                    <div class="gallery-item animate" style="animation-delay: 0.5s;" onclick="openLightbox('assets/gallery6.jpg', 'Gram Sabha Youth Engagement')">
-                        <img src="assets/gallery6.jpg" alt="Gram Sabha Meeting" onerror="this.src='https://picsum.photos/600/450?random=6'">
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
+                    <div class="gallery-item animate" style="animation-delay: 0.3s;" onclick="openLightbox('gallery4.jpeg', 'Percolation Pond', 'At the Stage of Development of Surplus Weir (Spillway) at Percolation Pond in Raigad District.')">
+                        <img src="gallery4.jpeg" alt="Percolation Pond" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/800/600?water4';">
                         <div class="gallery-overlay">
                             <div class="icon-box"><i class="fas fa-expand"></i></div>
-                            <h5 class="fw-bold mb-1">Youth & Gram Sabha Session</h5>
-                            <small class="opacity-75">Rural Empowerment</small>
+                            <span class="gallery-tag">Water Projects</span>
+                            <h5 class="fw-bold mb-1">Percolation Pond</h5>
+                            <p class="small text-light opacity-75 mb-0">At the Stage of Development of Surplus Weir (Spillway) at Percolation Pond in Raigad District.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
+                    <div class="gallery-item animate" style="animation-delay: 0.4s;" onclick="openLightbox('gallery5.jpeg', 'Percolation Pond', 'At the stage of Excavation of Pond Basin of a Percolation Pond in Solapur District.')">
+                        <img src="gallery5.jpeg" alt="Water Sampling Prep" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/800/600?water5';">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <span class="gallery-tag">Water Projects</span>
+                            <h5 class="fw-bold mb-1">Percolation Pond</h5>
+                            <p class="small text-light opacity-75 mb-0">At the stage of Excavation of Pond Basin of a Percolation Pond in Solapur District.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-card-wrapper" data-category="projects">
+                    <div class="gallery-item animate" style="animation-delay: 0.5s;" onclick="openLightbox('gallery6.jpeg', 'Cement Nala Bund', 'At the Final Stage of Construction of Cement Nala Bund in Sangli District.')">
+                        <img src="gallery6.jpeg" alt="Field Measurement & Data Collection" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/800/600?water6';">
+                        <div class="gallery-overlay">
+                            <div class="icon-box"><i class="fas fa-expand"></i></div>
+                            <span class="gallery-tag">Water Projects</span>
+                            <h5 class="fw-bold mb-1">Cement Nala Bund</h5>
+                            <p class="small text-light opacity-75 mb-0">At the Final Stage of Construction of Cement Nala Bund in Sangli District.</p>
                         </div>
                     </div>
                 </div>
@@ -224,8 +238,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center p-3">
-                    <img id="lightboxImage" src="" alt="Gallery Preview" class="img-fluid rounded-3 shadow-lg mb-3" style="max-height: 80vh; width: auto;">
-                    <p id="lightboxCaption" class="text-white fw-bold fs-5 mb-0"></p>
+                    <img id="lightboxImage" src="" alt="Gallery Preview" class="img-fluid rounded-3 shadow-lg mb-3" style="max-height: 75vh; width: auto;">
+                    <h5 id="lightboxTitle" class="text-white fw-bold mb-1"></h5>
+                    <p id="lightboxCaption" class="text-light opacity-75 mb-0"></p>
                 </div>
             </div>
         </div>
@@ -241,7 +256,7 @@
                 <div class="col-lg-2 col-md-4 col-6 mb-4">
                     <h6 class="fw-bold mb-3 text-white">Quick Links</h6>
                     <ul class="list-unstyled">
-                        <li><a href="abuot.html" class="footer-link">About</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
                         <li><a href="work.html" class="footer-link">Work</a></li>
                         <li><a href="#gallery" class="footer-link">Gallery</a></li>
                         <li><a href="vision.html" class="footer-link">Vision</a></li>
@@ -288,6 +303,7 @@
             </div>
         </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const observer = new IntersectionObserver((entries) => {
@@ -318,11 +334,15 @@
         });
 
         // Lightbox Function
-        function openLightbox(imageSrc, caption) {
+        function openLightbox(imageSrc, title, description) {
             const lightboxImg = document.getElementById('lightboxImage');
+            const lightboxTitle = document.getElementById('lightboxTitle');
             const lightboxCap = document.getElementById('lightboxCaption');
+            
             lightboxImg.src = imageSrc;
-            lightboxCap.textContent = caption;
+            lightboxTitle.textContent = title || '';
+            lightboxCap.textContent = description || '';
+            
             const galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
             galleryModal.show();
         }
