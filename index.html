@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>S.Nayan Talekar | Empowering Rural India</title>
     <meta name="description" content="Nayan Talekar - Transforming rural India through sustainable agriculture, water management, and community empowerment.">
     
@@ -95,6 +95,15 @@
             object-position: center;
             z-index: 1;
             pointer-events: none; /* Disables any play/pause popup button on mobile/desktop */
+        }
+
+        /* Hide native playback overlays (works for WebKit/Blink) */
+        .hero-video::-webkit-media-controls,
+        .hero-video::-webkit-media-controls-overlay-play-button,
+        .hero-video::-webkit-media-controls-start-playback-button {
+            display: none !important;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .hero-overlay {
@@ -240,6 +249,7 @@
 
     <section id="home" class="hero">
         <div class="hero-video-container">
+            <!-- Add the muted attribute so browsers will allow autoplay for background video -->
             <video class="hero-video" autoplay muted loop playsinline id="heroVideo" preload="auto" disablePictureInPicture>
                 <source src="homepage.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -251,7 +261,7 @@
                 <div class="col-lg-10 col-xl-8">
                     <div class="hero-content animate">
                         <h1>Empowering Rural India</h1>
-                        <p class="lead mx-auto">Transforming lives through sustainable agriculture, water security, and community development. Building self-reliant villages for generations to come.</p>
+                        <p class="lead mx-auto">Transforming lives through sustainable agriculture, water security, and community development. Building self-reliant villages for generations to come.</[...]
                     </div>
                     <div class="scroll-indicator">
                         <i class="fas fa-chevron-down fs-3"></i>
@@ -362,11 +372,15 @@
             const heroVideo = document.getElementById("heroVideo");
 
             if (heroVideo) {
+                // Ensure the element is muted as soon as possible (some browsers require attribute + property)
                 heroVideo.muted = true;
                 heroVideo.defaultMuted = true;
+                // Also ensure the muted attribute exists in the DOM
+                heroVideo.setAttribute('muted', '');
 
                 const startVideo = () => {
                     heroVideo.play().catch(error => {
+                        // Autoplay may be blocked by the browser (user settings / power saver). This is expected behavior on some devices.
                         console.log("Autoplay forced silent start...", error);
                     });
                 };
