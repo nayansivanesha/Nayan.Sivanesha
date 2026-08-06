@@ -6,7 +6,7 @@
     <title>S.Nayan Talekar | Empowering Rural India</title>
     <meta name="description" content="Nayan Talekar - Transforming rural India through sustainable agriculture, water management, and community empowerment.">
     
-    <!-- Preload the background video so it starts loading immediately -->
+    <!-- Preload background video for immediate fetch -->
     <link rel="preload" href="homepage.mp4" as="video" type="video/mp4">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -77,7 +77,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            background-color: var(--dark); /* Dark poster fallback while video loads */
+            background-color: var(--dark);
         }
 
         .hero-video-container {
@@ -101,7 +101,6 @@
             pointer-events: none;
         }
 
-        /* Completely hide browser controls and mobile play overlay icons */
         .hero-video::-webkit-media-controls,
         .hero-video::-webkit-media-controls-overlay-play-button,
         .hero-video::-webkit-media-controls-start-playback-button,
@@ -253,7 +252,6 @@
 
     <section id="home" class="hero">
         <div class="hero-video-container">
-            <!-- Inline styles and strict attributes to force muted background behavior across browsers -->
             <video class="hero-video" 
                    autoplay 
                    muted 
@@ -262,8 +260,7 @@
                    webkit-playsinline
                    preload="auto" 
                    id="heroVideo" 
-                   disablePictureInPicture
-                   style="pointer-events: none; background: #0f172a;">
+                   disablePictureInPicture>
                 <source src="homepage.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -380,47 +377,42 @@
             document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Instant force-autoplay script with user interaction fallback handling
+        // Robust video execution script
         document.addEventListener("DOMContentLoaded", function () {
             const heroVideo = document.getElementById("heroVideo");
 
             if (heroVideo) {
-                // Hardcode mute state in JavaScript properties
+                // Force muted properties explicitly
                 heroVideo.muted = true;
                 heroVideo.defaultMuted = true;
 
-                const tryPlayVideo = () => {
-                    const playPromise = heroVideo.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(() => {
-                            // Backup: Force start playing on any user scroll/touch event if restricted by browser engine
-                            const forcePlayOnUserAction = () => {
-                                heroVideo.play();
-                                window.removeEventListener('click', forcePlayOnUserAction);
-                                window.removeEventListener('touchstart', forcePlayOnUserAction);
-                                window.removeEventListener('scroll', forcePlayOnUserAction);
-                            };
-                            window.addEventListener('click', forcePlayOnUserAction);
-                            window.addEventListener('touchstart', forcePlayOnUserAction);
-                            window.addEventListener('scroll', forcePlayOnUserAction);
-                        });
-                    }
+                const startVideo = () => {
+                    heroVideo.play().catch(err => {
+                        console.warn("Autoplay deferred:", err);
+                    });
                 };
 
-                tryPlayVideo();
+                // Play as soon as initial frame/data is loaded
+                if (heroVideo.readyState >= 2) {
+                    startVideo();
+                } else {
+                    heroVideo.addEventListener('loadeddata', startVideo);
+                }
 
-                // Pause video when scrolled out of view to save power/battery
-                const videoObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) { 
-                            heroVideo.play().catch(() => {}); 
-                        } else { 
-                            heroVideo.pause(); 
-                        }
-                    });
-                }, { threshold: 0.1 });
+                // Scroll observer: pause ONLY after page has initialized and user scrolls away
+                setTimeout(() => {
+                    const videoObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                heroVideo.play().catch(() => {});
+                            } else {
+                                heroVideo.pause();
+                            }
+                        });
+                    }, { threshold: 0.1 });
 
-                videoObserver.observe(heroVideo);
+                    videoObserver.observe(heroVideo);
+                }, 1000);
             }
         });
 
