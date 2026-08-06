@@ -200,9 +200,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* class that actually starts the animation */
         .animate {
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* class we add to elements that should animate when they scroll into view */
+        .animate-on-scroll {
+            opacity: 0;
         }
 
         .scroll-indicator {
@@ -229,12 +235,12 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <span class="ms-2 fw-bold fs-4">S. Nayan Talekar</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -269,12 +275,12 @@
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-10 col-xl-8">
-                    <div class="hero-content animate">
+                    <div class="hero-content animate-on-scroll">
                         <h1>Empowering Rural India</h1>
                         <p class="lead mx-auto">Transforming lives through sustainable agriculture, water security, and community development. Building self-reliant villages for generations to come.</p>
                     </div>
                     <div class="scroll-indicator">
-                        <i class="fas fa-chevron-down fs-3"></i>
+                        <i class="fas fa-chevron-down fs-3" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -352,11 +358,11 @@
                 <div class="col-lg-3 col-md-4 mb-4">
                     <h6 class="fw-bold mb-3 text-white">Contact Info</h6>
                     <p class="mb-2 text-light opacity-75">
-                        <i class="fas fa-envelope me-2"></i>
+                        <i class="fas fa-envelope me-2" aria-hidden="true"></i>
                         <a href="mailto:nayansivanesha@outlook.in" class="footer-link">nayansivanesha@outlook.in</a>
                     </p>
                     <p class="text-light opacity-75">
-                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
                         <a href="https://maps.google.com/?q=Maharashtra,+India" target="_blank" rel="noopener noreferrer" class="footer-link">
                             Maharashtra, India <i class="fas fa-external-link-alt ms-1 fs-6"></i>
                         </a>
@@ -380,9 +386,10 @@
         // Robust video execution script
         document.addEventListener("DOMContentLoaded", function () {
             const heroVideo = document.getElementById("heroVideo");
+            const heroSection = document.querySelector('.hero');
 
             if (heroVideo) {
-                // Force muted properties explicitly
+                // Force muted properties explicitly (helps with autoplay policies)
                 heroVideo.muted = true;
                 heroVideo.defaultMuted = true;
 
@@ -399,61 +406,82 @@
                     heroVideo.addEventListener('loadeddata', startVideo);
                 }
 
-                // Scroll observer: pause ONLY after page has initialized and user scrolls away
+                // Observe the hero section visibility (not the video element directly).
+                // This avoids false pauses caused by the video element's internal metrics.
                 setTimeout(() => {
-                    const videoObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                heroVideo.play().catch(() => {});
-                            } else {
-                                heroVideo.pause();
-                            }
-                        });
-                    }, { threshold: 0.1 });
+                    if ('IntersectionObserver' in window && heroSection) {
+                        const videoObserver = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    heroVideo.play().catch(() => {});
+                                } else {
+                                    heroVideo.pause();
+                                }
+                            });
+                        }, { threshold: 0.1 });
 
-                    videoObserver.observe(heroVideo);
+                        videoObserver.observe(heroSection);
+                    }
                 }, 1000);
             }
-        });
 
-        // --- Animated Counter Numbers ---
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const increment = target / 100;
-                let current = 0;
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else { counter.textContent = target; }
-                };
-                updateCounter();
-            });
-        }
+            // --- Animated Counter Numbers (time-based, robust for small targets) ---
+            function animateCounters(duration = 2000) {
+                const counters = document.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target')) || 0;
+                    const start = 0;
+                    const startTime = performance.now();
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('animate');
-            });
-        }, { threshold: 0.1 });
+                    const step = (now) => {
+                        const elapsed = Math.min(now - startTime, duration);
+                        const progress = elapsed / duration;
+                        // easeOutQuad for a nicer feeling animation
+                        const eased = 1 - (1 - progress) * (1 - progress);
+                        const value = Math.floor(start + (target - start) * eased);
+                        counter.textContent = value;
+                        if (elapsed < duration) {
+                            requestAnimationFrame(step);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
 
-        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+                    requestAnimationFrame(step);
+                });
+            }
 
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            const statsObserver = new IntersectionObserver((entries) => {
+            // IntersectionObserver for scroll-triggered animations
+            const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        animateCounters();
-                        statsObserver.unobserve(entry.target);
+                        entry.target.classList.add('animate');
+                        // once animated, unobserve
+                        scrollObserver.unobserve(entry.target);
                     }
                 });
-            });
-            statsObserver.observe(statsSection);
-        }
+            }, { threshold: 0.1 });
+
+            // Observe elements that should animate when in view
+            document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
+
+            // Observe stats section to start counters once (and unobserve)
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection && 'IntersectionObserver' in window) {
+                const statsObserver = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                statsObserver.observe(statsSection);
+            } else {
+                // fallback if IntersectionObserver not supported
+                animateCounters();
+            }
+        });
     </script>
 </body>
 </html>
