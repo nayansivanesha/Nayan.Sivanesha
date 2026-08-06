@@ -6,6 +6,9 @@
     <title>S.Nayan Talekar | Empowering Rural India</title>
     <meta name="description" content="Nayan Talekar - Transforming rural India through sustainable agriculture, water management, and community empowerment.">
     
+    <!-- Preload the background video so it starts loading immediately -->
+    <link rel="preload" href="homepage.mp4" as="video" type="video/mp4">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -74,6 +77,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
+            background-color: var(--dark); /* Dark poster fallback while video loads */
         }
 
         .hero-video-container {
@@ -84,7 +88,7 @@
             height: 100%;
             z-index: 1;
             overflow: hidden;
-            pointer-events: none; /* Prevents touch/click interactions with video */
+            pointer-events: none;
             user-select: none;
         }
 
@@ -94,16 +98,17 @@
             object-fit: cover;
             object-position: center;
             z-index: 1;
-            pointer-events: none; /* Disables any play/pause popup button on mobile/desktop */
+            pointer-events: none;
         }
 
-        /* Hide native playback overlays (works for WebKit/Blink) */
+        /* Completely hide browser controls and mobile play overlay icons */
         .hero-video::-webkit-media-controls,
         .hero-video::-webkit-media-controls-overlay-play-button,
-        .hero-video::-webkit-media-controls-start-playback-button {
+        .hero-video::-webkit-media-controls-start-playback-button,
+        .hero-video::-webkit-media-controls-panel {
             display: none !important;
             -webkit-appearance: none;
-            appearance: none;
+            opacity: 0 !important;
         }
 
         .hero-overlay {
@@ -112,7 +117,6 @@
             left: 0;
             right: 0;
             bottom: 0;
-            /* Dark subtle overlay for high clarity and text contrast */
             background: linear-gradient(
                 180deg, 
                 rgba(15, 23, 42, 0.5) 0%, 
@@ -249,8 +253,17 @@
 
     <section id="home" class="hero">
         <div class="hero-video-container">
-            <!-- Add the muted attribute so browsers will allow autoplay for background video -->
-            <video class="hero-video" autoplay muted loop playsinline id="heroVideo" preload="auto" disablePictureInPicture>
+            <!-- Inline styles and strict attributes to force muted background behavior across browsers -->
+            <video class="hero-video" 
+                   autoplay 
+                   muted 
+                   loop 
+                   playsinline 
+                   webkit-playsinline
+                   preload="auto" 
+                   id="heroVideo" 
+                   disablePictureInPicture
+                   style="pointer-events: none; background: #0f172a;">
                 <source src="homepage.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -261,7 +274,7 @@
                 <div class="col-lg-10 col-xl-8">
                     <div class="hero-content animate">
                         <h1>Empowering Rural India</h1>
-                        <p class="lead mx-auto">Transforming lives through sustainable agriculture, water security, and community development. Building self-reliant villages for generations to come.</[...]
+                        <p class="lead mx-auto">Transforming lives through sustainable agriculture, water security, and community development. Building self-reliant villages for generations to come.</p>
                     </div>
                     <div class="scroll-indicator">
                         <i class="fas fa-chevron-down fs-3"></i>
@@ -328,7 +341,7 @@
                             </a>
                         </li>
                         <li>
-                             <a href="https://water.maharashtra.gov.in/en/scheme/atal-bhujal-yojana/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                            <a href="https://water.maharashtra.gov.in/en/scheme/atal-bhujal-yojana/" target="_blank" rel="noopener noreferrer" class="footer-link">
                                 Atal Bhujal Yojana <i class="fas fa-external-link-alt ms-1 fs-6"></i>
                             </a>
                         </li>
@@ -367,25 +380,34 @@
             document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // --- Optimized Smooth Autoplay Video JS (No manual controls) ---
+        // Instant force-autoplay script with user interaction fallback handling
         document.addEventListener("DOMContentLoaded", function () {
             const heroVideo = document.getElementById("heroVideo");
 
             if (heroVideo) {
-                // Ensure the element is muted as soon as possible (some browsers require attribute + property)
+                // Hardcode mute state in JavaScript properties
                 heroVideo.muted = true;
                 heroVideo.defaultMuted = true;
-                // Also ensure the muted attribute exists in the DOM
-                heroVideo.setAttribute('muted', '');
 
-                const startVideo = () => {
-                    heroVideo.play().catch(error => {
-                        // Autoplay may be blocked by the browser (user settings / power saver). This is expected behavior on some devices.
-                        console.log("Autoplay forced silent start...", error);
-                    });
+                const tryPlayVideo = () => {
+                    const playPromise = heroVideo.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                            // Backup: Force start playing on any user scroll/touch event if restricted by browser engine
+                            const forcePlayOnUserAction = () => {
+                                heroVideo.play();
+                                window.removeEventListener('click', forcePlayOnUserAction);
+                                window.removeEventListener('touchstart', forcePlayOnUserAction);
+                                window.removeEventListener('scroll', forcePlayOnUserAction);
+                            };
+                            window.addEventListener('click', forcePlayOnUserAction);
+                            window.addEventListener('touchstart', forcePlayOnUserAction);
+                            window.addEventListener('scroll', forcePlayOnUserAction);
+                        });
+                    }
                 };
 
-                startVideo();
+                tryPlayVideo();
 
                 // Pause video when scrolled out of view to save power/battery
                 const videoObserver = new IntersectionObserver((entries) => {
