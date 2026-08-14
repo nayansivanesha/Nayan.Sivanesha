@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | S.Nayan Talekar</title>
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+    <!-- Apple Touch Icon & Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- External Fonts & Libraries -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-800: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--gray-800); 
+            background-color: var(--gray-50);
+            overflow-x: hidden; 
+            padding-top: 80px; 
+        }
+
+        /* Header & Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--gray-800) !important;
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active { 
+            color: var(--primary) !important; 
+            background: var(--gray-100); 
+        }
+
+        /* Content & Section Styles */
+        .content-section { padding: 5rem 0; }
+        .section-title { font-size: 2.5rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 1.15rem; color: #475569; max-width: 650px; margin-bottom: 1.5rem; }
+
+        /* Card Styles */
+        .about-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2.2rem;
+            height: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-icon-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .about-card p {
+            color: #475569;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-card p:last-child { margin-bottom: 0; }
+
+        /* Interest List Items */
+        .interests-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .interests-list li {
+            background: var(--gray-100);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray-800);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Banner Quote Callout */
+        .quote-banner {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2);
+        }
+
+        .quote-banner h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #60a5fa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tagline-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .footer { background: #0f172a; }
+        .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; display: inline-block; margin-bottom: 6px; }
+        .footer-link:hover { color: #3b82f6; }
+
+        /* Smooth Scroll Animations Fix */
+        .animate { 
+            opacity: 0; 
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        
+        .animate.animated { 
+            opacity: 1; 
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="ms-2 fw-bold fs-4">S. Nayan Talekar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="work.html">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="vision.html">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="content-section">
+        <div class="container">
+
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h1 class="section-title animate text-lg-start">About S. Nayan Talekar</h1>
+                    <p class="section-subtitle animate text-lg-start ms-0" style="transition-delay: 0.2s;">
+                        Student, athlete, agricultural enthusiast, and social-impact advocate from Pune, Maharashtra. Through hands-on experience with Atal Bhujal Yojana and family initiatives, driving transformative, community-led rural solutions.
+                    </p>
+                    <div class="animate text-lg-start" style="transition-delay: 0.4s;">
+                        <a href="work.html" class="btn btn-primary me-3 mb-3">Our Work</a>
+                        <a href="contact.html" class="btn btn-outline-primary mb-3">Get Involved</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="animate" style="transition-delay: 0.6s;">
+                        <img src="snayan-talekar.jpeg" alt="S. Nayan Talekar" class="img-fluid rounded-4 shadow-lg" style="max-height: 450px; width: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-6 animate">
+                    <div class="about-card">
+                        <div class="card-icon-header">
+                            <div class="card-icon"><i class="fas fa-user"></i></div>
+                            <h3>Who I Am</h3>
+                        </div>
+                        <p>I am Nayan Sivanesha, a student, athlete, agricultural enthusiast, and social-impact enthusiast from Pune, Maharashtra.</p>
+                        <p>My interests have grown around agriculture, rural development, entrepreneurship, technology, and community development. Being exposed to rural India and agricultural activities from an early age has shaped the way I look at development and the challenges faced by farming communities.</p>
+                        <p>I enjoy understanding real-world problems, exploring practical solutions, and learning how ideas can be transformed into meaningful action.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 animate">
+                    <div class="about-card">
+                        <div class="card-icon-header">
+                            <div class="card-icon"><i class="fas fa-seedling"></i></div>
+                            <h3>My Roots</h3>
+                        </div>
+                        <p>My connection with agriculture and rural development comes from my family and the work I have been exposed to since childhood.</p>
+                        <p>Through this experience, I have seen how closely water, agriculture, infrastructure, livelihoods, and rural communities are connected. These experiences have given me a deeper appreciation for the people and systems that support rural India.</p>
+                        <p><strong>Agriculture, for me, is therefore not simply an interest.</strong> It is a part of my background and something I continue to learn about.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 animate">
+                    <div class="about-card">
+                        <div class="card-icon-header">
+                            <div class="card-icon"><i class="fas fa-compass"></i></div>
+                            <h3>What I Do</h3>
+                        </div>
+                        <p class="mb-3">Alongside my academics, I spend time exploring areas that interest me, including:</p>
+                        <ul class="interests-list mb-3">
+                            <li><span>🌱</span> <strong>Agriculture & Modern Farming</strong> </li>
+                            <li><span>💧</span> <strong>Water Conservation & Rural Development</strong> </li>
+                            <li><span>🚜</span> <strong>Agricultural Entrepreneurship</strong> </li>
+                            <li><span>☀️</span> <strong>Renewable Energy & Sustainability</strong> </li>
+                            <li><span>💡</span> <strong>Technology & Innovation</strong> </li>
+                            <li><span>🏘️</span> <strong>Community Development & Impact</strong> </li>
+                        </ul>
+                        <p>I also enjoy writing and sharing my thoughts on topics related to agriculture, society, development, and contemporary issues.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 animate">
+                    <div class="about-card">
+                        <div class="card-icon-header">
+                            <div class="card-icon"><i class="fas fa-hand-holding-water"></i></div>
+                            <h3>MARCH</h3>
+                        </div>
+                        <p><strong>Model Action For Rural Change (MARCH)</strong> is an important part of my journey.</p>
+                        <p>Established in 1997, MARCH has been involved in rural-development initiatives, including work related to watershed development and water-resource management.</p>
+                        <p>Being connected with this work has helped me understand that rural development requires more than individual projects. It requires local participation, practical planning, responsible resource management, and long-term commitment.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 animate">
+                    <div class="about-card">
+                        <div class="card-icon-header">
+                            <div class="card-icon"><i class="fas fa-table-tennis"></i></div>
+                            <h3>Life Beyond Work</h3>
+                        </div>
+                        <p>I am currently a student, and academics are an important part of my journey. Outside academics, <strong>tennis</strong> is one of my biggest interests.</p>
+                        <p>Playing tennis has taught me discipline, consistency, patience, and the importance of continuously improving — lessons that I also carry into my other pursuits.</p>
+
+                        <hr class="my-3" style="border-color: #cbd5e1;">
+
+                        <h4 class="h6 fw-bold text-dark mb-2"><i class="fas fa-graduation-cap me-2 text-primary"></i>Always Learning</h4>
+                        <p>I am still at the beginning of my journey. I believe that being young is an opportunity to learn from people, explore different ideas, experience the real world, and turn curiosity into action.</p>
+                        <p>This website is a space where I share my journey, interests, experiences, and work as I continue to learn and grow.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 text-center animate mt-4">
+                    <div class="quote-banner">
+                        <h2 class="mb-3">"Agriculture by roots. Athlete by discipline. Social impact by purpose."</h2>
+                        <a href="contact.html" class="tagline-badge">S. Nayan Talekar</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer py-5 text-white">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="fw-bold mb-3 text-white">S. Nayan Talekar</h5>
+                    <p class="text-light opacity-75 mb-0">Empowering rural communities through sustainable development, water management, and community empowerment.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="work.html" class="footer-link">Work</a></li>
+                        <li><a href="gallery.html" class="footer-link">Gallery</a></li>
+                        <li><a href="vision.html" class="footer-link">Vision</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Focus Areas & Knowledge</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://en.wikipedia.org/wiki/Sustainable_agriculture" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Sustainable Agriculture <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://water.maharashtra.gov.in/en/scheme/atal-bhujal-yojana/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Atal Bhujal Yojana <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://jaljeevanmission.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                Jal Jeevan Mission <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-white">Contact Info</h6>
+                    <p class="mb-2 text-light opacity-75">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:nayansivanesha@outlook.in" class="footer-link">nayansivanesha@outlook.in</a>
+                    </p>
+                    <p class="text-light opacity-75">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <a href="https://maps.google.com/?q=Maharashtra,+India" target="_blank" rel="noopener noreferrer" class="footer-link">
+                            Maharashtra, India <i class="fas fa-external-link-alt ms-1 fs-6"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 border-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0 text-light opacity-75">© 2026 Nayan Talekar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animated');
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
